@@ -1,4 +1,4 @@
-package com.adgvit.courseApp.DataModels
+package com.adgvit.courseApp.dataModels
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -10,5 +10,5 @@ class Course (
     @PrimaryKey
     val courseCode : String ="",
     val courseName : String ="",
-    val favourite : Boolean = false
+    var favourite : Boolean = false
 )
