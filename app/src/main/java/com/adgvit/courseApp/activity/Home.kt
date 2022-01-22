@@ -1,7 +1,8 @@
-package com.adgvit.courseApp
+package com.adgvit.courseApp.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.adgvit.courseApp.R
 import com.adgvit.courseApp.databinding.ActivityHomeBinding
 
 class Home : AppCompatActivity() {
@@ -11,6 +12,8 @@ class Home : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(R.layout.activity_home)
+
+        supportActionBar?.hide()
 
     }
 }
