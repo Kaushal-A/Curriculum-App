@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:orientation="vertical"
+    tools:context=".activity.Module">
+
+    <TextView
+        android:id="@+id/ModuleNo"
+        android:layout_marginTop="30dp"
+        android:textSize="34sp"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:text="Module 1"
+        android:fontFamily="@font/ibmplexsansbold"
+        android:gravity="bottom"
+        android:layout_margin="10dp" />
+
+    <TextView
+        android:id="@+id/ModuleName"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="HCI Foundations"
+        android:textSize="30sp"
+        android:fontFamily="@font/ibmplexsans"
+        android:layout_margin="10dp" />
+
+    <ListView
+        android:id="@+id/ModuleTopics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:divider="#1D1D1D">
+    </ListView>
+
+</LinearLayout>
