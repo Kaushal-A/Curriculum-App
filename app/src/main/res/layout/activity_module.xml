@@ -30,12 +30,12 @@
         android:fontFamily="@font/ibmplexsans"
         android:layout_margin="10dp" />
 
-    <ListView
-        android:id="@+id/ModuleTopics"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:listitem="@layout/textview_listview"
-        android:divider="#1D1D1D">
-    </ListView>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/MRV"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/recyclerview_module_text" />
 
 </LinearLayout>

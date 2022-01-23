@@ -5,7 +5,9 @@
       <map>
         <entry key="..\:/Users/Khushi/AndroidStudioProjects/Curriculum-App/app/src/main/res/layout/activity_course.xml" value="0.14945652173913043" />
         <entry key="..\:/Users/Khushi/AndroidStudioProjects/Curriculum-App/app/src/main/res/layout/activity_home.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/Khushi/AndroidStudioProjects/Curriculum-App/app/src/main/res/layout/activity_module.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Khushi/AndroidStudioProjects/Curriculum-App/app/src/main/res/layout/activity_module.xml" value="0.25" />
+        <entry key="..\:/Users/Khushi/AndroidStudioProjects/Curriculum-App/app/src/main/res/layout/course_items.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Khushi/AndroidStudioProjects/Curriculum-App/app/src/main/res/layout/recyclerview_module_text.xml" value="0.1" />
         <entry key="..\:/Users/Khushi/AndroidStudioProjects/Curriculum-App/app/src/main/res/layout/textview_listview.xml" value="0.1" />
         <entry key="..\:/Users/garvt/AndroidStudioProjects/Curriculum-App/app/src/main/res/layout/activity_home.xml" value="0.335" />
         <entry key="..\:/Users/garvt/AndroidStudioProjects/Curriculum-App/app/src/main/res/layout/course_items.xml" value="0.1" />

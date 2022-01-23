@@ -9,52 +9,29 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ListView
 import android.widget.TextView
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.adgvit.courseApp.R
+import com.adgvit.courseApp.rvAdapters.ModuleRVAdapter
 
 class Module : AppCompatActivity() {
+    private var layoutManager: RecyclerView.LayoutManager? = null
+    private var ModuleAdapter: RecyclerView.Adapter<ModuleRVAdapter.ViewHolder>? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_module)
 
-        val listView = findViewById<ListView>(R.id.ModuleTopics)
-        listView.adapter = CustomAdapter(this)
+        val ModuleRV = findViewById<RecyclerView>(R.id.MRV)
+
+        layoutManager = LinearLayoutManager(this)
+        ModuleRV.layoutManager = layoutManager
+
+        ModuleAdapter = ModuleRVAdapter()
+        ModuleRV.adapter = ModuleAdapter
+
     }
 
-    private class CustomAdapter(context: Context): BaseAdapter() {
 
-        private val mContext: Context
-
-        private val Topics = arrayListOf<String>(
-            "1.Input-Output Channels", "2.Human memory", "3.HCI Foundations"
-        )
-
-        init {
-            mContext = context
-        }
-
-        override fun getCount(): Int {
-            return Topics.size
-        }
-
-        override fun getItem(position: Int): Any {
-            return "Sample String!"
-        }
-
-        override fun getItemId(position: Int): Long {
-            return position.toLong();
-        }
-
-        override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-            val layoutInflater = LayoutInflater.from(mContext)
-            val listViewText = layoutInflater.inflate(R.layout.textview_listview, parent, false)
-
-            val lTV = listViewText.findViewById<TextView>(R.id.ListViewText)
-            lTV.text = Topics.get(position)
-
-            return listViewText
-            /*val textView = TextView(mContext)
-            textView.text = "1.Input-output channels"
-            return textView*/
-        }
-    }
 }
