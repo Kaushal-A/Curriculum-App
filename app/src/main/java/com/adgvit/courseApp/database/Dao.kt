@@ -20,7 +20,7 @@ interface Dao {
     @Update
     suspend fun toogleFav(course: Course)
 
-    @Query("select * from coursetable where favourite=0")
+    @Query("select * from coursetable where favourite=0 order by courseCode ASC")
     fun getAllCourse() : LiveData<List<Course>>
     @Query("select * from coursetable where favourite=1")
     fun getMyCourse() : LiveData<List<Course>>
