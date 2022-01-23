@@ -1,6 +1,7 @@
 package com.adgvit.courseApp.activity
 
 import android.content.SharedPreferences
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -8,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.adgvit.courseApp.R
 import com.adgvit.courseApp.dataModels.Course
 import com.adgvit.courseApp.databinding.ActivityHomeBinding
 import com.adgvit.courseApp.rvAdapters.CourseRVAdapter
@@ -26,8 +28,8 @@ class Home : AppCompatActivity(), ICourseRVAdapter {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+        binding.collapsingToolbar.title = "Courses"
 
-        supportActionBar?.hide()
         val myCoursesLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this)
         val allCoursesLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this)
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
@@ -60,13 +62,16 @@ class Home : AppCompatActivity(), ICourseRVAdapter {
 
 
 
-
     }
 
     private fun loadMyCourses() {
         myCoursesList = listOf(
             Course("CSE3001", "Data Structures and Algorithms",true),
             Course("CSE3007", "Data Structures and Algorithms",true),
+            Course("CSE3008", "Data Structures and Algorithms",true),
+            Course("CSE3009", "Data Structures and Algorithms",true),
+            Course("CSE3010", "Data Structures and Algorithms",true),
+            Course("CSE3011", "Data Structures and Algorithms",true),
 
         )
         allCoursesList = listOf(
