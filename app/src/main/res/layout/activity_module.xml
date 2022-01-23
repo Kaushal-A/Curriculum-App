@@ -34,6 +34,7 @@
         android:id="@+id/ModuleTopics"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        tools:listitem="@layout/textview_listview"
         android:divider="#1D1D1D">
     </ListView>
 

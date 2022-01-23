@@ -22,6 +22,7 @@ class Home : AppCompatActivity() {
         setContentView(view)
 
         supportActionBar?.hide()
+        
 
         loadMyCourses()
         val myCoursesLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this)
@@ -44,11 +45,11 @@ class Home : AppCompatActivity() {
 
         )
         allCoursesList = listOf(
-            Course("CSE3004", "Data Structures and Algorithms"),
-            Course("CSE3004", "Data Structures and Algorithms"),
-            Course("CSE3004", "Data Structures and Algorithms"),
-            Course("CSE3004", "Data Structures and Algorithms"),
-            Course("CSE3004", "Data Structures and Algorithms")
+            Course("CSE3004", "Data Structures and Algorithms",false),
+            Course("CSE3004", "Data Structures and Algorithms",false),
+            Course("CSE3004", "Data Structures and Algorithms",false),
+            Course("CSE3004", "Data Structures and Algorithms",false),
+            Course("CSE3004", "Data Structures and Algorithms",false)
 
         )
     }
