@@ -11,12 +11,17 @@ interface Dao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(course: Course)
 
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertAll(allCourse:List<Course>)
+
     @Query("Delete from coursetable")
     suspend fun deleteAll()
 
     @Update
     suspend fun toogleFav(course: Course)
 
-    @Query("select * from coursetable")
+    @Query("select * from coursetable where favourite=0")
     fun getAllCourse() : LiveData<List<Course>>
+    @Query("select * from coursetable where favourite=1")
+    fun getMyCourse() : LiveData<List<Course>>
 }

@@ -9,7 +9,6 @@ import com.adgvit.courseApp.dataModels.Course
 import com.adgvit.courseApp.databinding.CourseItemsBinding
 
 class CourseRVAdapter(
-        myCoursesList: List<Course>,
         val listener: ICourseRVAdapter
 ) : RecyclerView.Adapter<ViewHolderCourses>() {
     var courseList= ArrayList<Course>()
@@ -31,11 +30,12 @@ class CourseRVAdapter(
                 else{
                     binding.imageStar.setImageResource(R.drawable.ic_star_notselected)
                 }
-                binding.imageStar.setOnClickListener(View.OnClickListener { view ->
+                binding.imageStar.setOnClickListener{
                     val position: Int = holder.adapterPosition;
-                    courseList[position].apply { favourite = !favourite }
-                    notifyDataSetChanged()
-                })
+                    val currcourse = courseList[position]
+                   currcourse.apply { favourite = !favourite }
+                    listener.onStarClicked(currcourse)
+                }
             }
         }
     }

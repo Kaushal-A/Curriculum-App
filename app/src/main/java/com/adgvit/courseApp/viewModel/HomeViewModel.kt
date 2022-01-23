@@ -14,11 +14,12 @@ import kotlinx.coroutines.launch
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
     val repo: HomeRepo
     val allCourse: LiveData<List<Course>>
+    val myCourse: LiveData<List<Course>>
     init {
         val dao = CurriculumDB.getDatabase(application).getDao()
         repo = HomeRepo(dao)
         allCourse=repo.allCourse
-
+        myCourse=repo.myCourse
     }
     fun insert(course: Course) = viewModelScope.launch(Dispatchers.IO){
         repo.insert(course)
@@ -28,6 +29,9 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     }
     fun deleteAll() = viewModelScope.launch(Dispatchers.IO){
         repo.deleteAll()
+    }
+    fun insertAll(allCourses: List<Course>) = viewModelScope.launch(Dispatchers.IO) {
+        repo.insertAll(allCourses)
     }
 
 }

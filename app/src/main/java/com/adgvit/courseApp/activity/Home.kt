@@ -1,7 +1,10 @@
 package com.adgvit.courseApp.activity
 
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,43 +28,64 @@ class Home : AppCompatActivity(), ICourseRVAdapter {
         setContentView(view)
 
         supportActionBar?.hide()
-        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-        loadMyCourses()
         val myCoursesLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this)
         val allCoursesLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this)
-
+        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        loadMyCourses()
         binding.myCoursesRecycler.layoutManager = myCoursesLayoutManager
         binding.allCoursesRecycler.layoutManager = allCoursesLayoutManager
-
-        myCourseRvAdapter = CourseRVAdapter(myCoursesList,this)
-        allCourseRVAdapter = CourseRVAdapter(allCoursesList,this)
+        myCourseRvAdapter = CourseRVAdapter(this)
+        allCourseRVAdapter = CourseRVAdapter(this)
         binding.myCoursesRecycler.adapter = myCourseRvAdapter
         binding.allCoursesRecycler.adapter = allCourseRVAdapter
+        val sp: SharedPreferences = getSharedPreferences("com.adgvit.course", MODE_PRIVATE)
+        if(sp.getBoolean("first",true)){
+        viewModel.insertAll(allCoursesList)
+        viewModel.insertAll(myCoursesList)
+
+        }
+
+        viewModel.allCourse.observe(this, Observer {list ->
+            list?.let {
+                allCourseRVAdapter.updateRV(it)
+
+            }
+
+        })
+        viewModel.myCourse.observe(this, Observer { list->
+            list?.let {
+                myCourseRvAdapter.updateRV(it)
+            }
+        })
+
+
+
 
     }
 
     private fun loadMyCourses() {
         myCoursesList = listOf(
-            Course("CSE3004", "Data Structures and Algorithms",true),
-            Course("CSE3004", "Data Structures and Algorithms",true),
+            Course("CSE3001", "Data Structures and Algorithms",true),
+            Course("CSE3007", "Data Structures and Algorithms",true),
 
         )
         allCoursesList = listOf(
+            Course("CSE3002", "Data Structures and Algorithms",false),
+            Course("CSE3003", "Data Structures and Algorithms",false),
             Course("CSE3004", "Data Structures and Algorithms",false),
-            Course("CSE3004", "Data Structures and Algorithms",false),
-            Course("CSE3004", "Data Structures and Algorithms",false),
-            Course("CSE3004", "Data Structures and Algorithms",false),
-            Course("CSE3004", "Data Structures and Algorithms",false)
+            Course("CSE3005", "Data Structures and Algorithms",false),
+            Course("CSE3006", "Data Structures and Algorithms",false)
 
         )
     }
 
     override fun onStarClicked(course: Course) {
-        TODO("Not yet implemented")
+        viewModel.toggleFav(course)
+        Toast.makeText(applicationContext,"Added to Favourites", Toast.LENGTH_LONG).show()
     }
 
     override fun onItemClicked(course: Course) {
-        TODO("Not yet implemented")
+
     }
 
 

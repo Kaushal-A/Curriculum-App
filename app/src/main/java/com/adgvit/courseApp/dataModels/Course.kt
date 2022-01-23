@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 )
 class Course (
     @PrimaryKey
-    val courseCode : String ="",
-    val courseName : String ="",
-    var favourite : Boolean = false
+    val courseCode : String,
+    val courseName : String,
+    var favourite : Boolean=false
 )
