@@ -81,7 +81,11 @@ class Home : AppCompatActivity(), ICourseRVAdapter {
 
     override fun onStarClicked(course: Course) {
         viewModel.toggleFav(course)
-        Toast.makeText(applicationContext,"Added to My Course", Toast.LENGTH_LONG).show()
+        if(course.favourite)
+            Toast.makeText(applicationContext,"Added to My Course", Toast.LENGTH_SHORT).show()
+        else
+            Toast.makeText(applicationContext,"Removed from My Course", Toast.LENGTH_SHORT).show()
+
     }
 
     override fun onItemClicked(course: Course) {
