@@ -29,7 +29,6 @@ class Home : AppCompatActivity(), ICourseRVAdapter {
         val view = binding.root
         setContentView(view)
         binding.collapsingToolbar.title = "Courses"
-
         val myCoursesLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this)
         val allCoursesLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this)
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
@@ -42,8 +41,8 @@ class Home : AppCompatActivity(), ICourseRVAdapter {
         binding.allCoursesRecycler.adapter = allCourseRVAdapter
         val sp: SharedPreferences = getSharedPreferences("com.adgvit.course", MODE_PRIVATE)
         if(sp.getBoolean("first",true)){
-        viewModel.insertAll(allCoursesList)
-        viewModel.insertAll(myCoursesList)
+            viewModel.insertAll(allCoursesList)
+            viewModel.insertAll(myCoursesList)
 
         }
 
