@@ -13,6 +13,4 @@ import java.util.ArrayList
 
 class Repo(val networkAPI: NetworkAPI) {
     fun getAllCourse(): Call<List<Docs>> = networkAPI.getAllCurriculums()
-
-
 }

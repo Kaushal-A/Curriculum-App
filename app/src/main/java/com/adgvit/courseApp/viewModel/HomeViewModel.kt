@@ -10,18 +10,16 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class HomeViewModel(application: Application) : AndroidViewModel(application) {
+class HomeViewModel(application: Application, private val repository: Repo) : AndroidViewModel(application) {
 
 
-    val repo: Repo = Repo(NetworkUtils.getNetworkAPIInstance())
+//    val repository: Repo = Repo(NetworkUtils.getNetworkAPIInstance())
     val allCourse = MutableLiveData<List<Docs>>()
     val myCourse = MutableLiveData<List<Docs>>()
     val errorMessage = MutableLiveData<String>()
-//    val allCourse: LiveData<List<Course>>
-//    val myCourse: LiveData<List<Course>>
     fun getAllCourse(){
 
-        val call = repo.getAllCourse()
+        val call = repository.getAllCourse()
         call.enqueue(object: Callback<List<Docs>>{
             override fun onResponse(call: Call<List<Docs>>, response: Response<List<Docs>>) {
                 if(!response.isSuccessful){
