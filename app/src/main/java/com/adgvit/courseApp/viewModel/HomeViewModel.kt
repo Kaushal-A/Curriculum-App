@@ -3,6 +3,7 @@ package com.adgvit.courseApp.viewModel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.adgvit.courseApp.Models.Docs
 import com.adgvit.courseApp.NetworkUtils.NetworkUtils
 import com.adgvit.courseApp.repo.Repo
@@ -10,7 +11,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class HomeViewModel(application: Application, private val repository: Repo) : AndroidViewModel(application) {
+class HomeViewModel(private val repository: Repo) : ViewModel() {
 
 
 //    val repository: Repo = Repo(NetworkUtils.getNetworkAPIInstance())
@@ -27,9 +28,7 @@ class HomeViewModel(application: Application, private val repository: Repo) : An
                     return
                 }
                 else{
-                    for(doc in response.body()!!){
-
-                    }
+                    allCourse.postValue(response.body())
                 }
 
             }
