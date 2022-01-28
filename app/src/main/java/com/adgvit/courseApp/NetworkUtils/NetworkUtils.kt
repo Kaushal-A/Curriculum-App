@@ -10,15 +10,19 @@ import java.io.IOException
 
 class NetworkUtils {
 
-    val BASE_URL: String = "http://curriculum-app-adg.herokuapp.com/"
 
-    fun getRetrofitInstance(): Retrofit =
-        Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+    companion object{
+        val BASE_URL: String = "http://curriculum-app-adg.herokuapp.com/"
+        fun getRetrofitInstance(): Retrofit =
+            Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
 
-    fun getNetworkAPIInstance(): NetworkAPI =
-        getRetrofitInstance().create(NetworkAPI::class.java)
+        fun getNetworkAPIInstance(): NetworkAPI =
+            getRetrofitInstance().create(NetworkAPI::class.java)
+    }
+
+
 
 }
