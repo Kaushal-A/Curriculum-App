@@ -43,7 +43,7 @@ class Home : AppCompatActivity(), ICourseRVAdapter {
         rcvMycourse.adapter = myCourseRvAdapter
         rcvAllCourse.adapter = allCourseRVAdapter
 
-        homeViewModel = ViewModelProvider(this, HomeViewModelFactory(repo))[HomeViewModel::class.java]
+        homeViewModel = ViewModelProvider(this, HomeViewModelFactory(repo, application))[HomeViewModel::class.java]
 
 
         homeViewModel.allCourse.observe(this, Observer {

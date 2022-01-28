@@ -11,7 +11,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class HomeViewModel(private val repository: Repo) : ViewModel() {
+class HomeViewModel(private val repository: Repo, application: Application) : AndroidViewModel(application) {
 
 
 //    val repository: Repo = Repo(NetworkUtils.getNetworkAPIInstance())
@@ -28,6 +28,7 @@ class HomeViewModel(private val repository: Repo) : ViewModel() {
                     return
                 }
                 else{
+
                     allCourse.postValue(response.body())
                 }
 
