@@ -26,11 +26,8 @@ class ModuleRVAdapter: RecyclerView.Adapter<ModuleRVAdapter.ViewHolder>() {
     }
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        var itemText: TextView
+        var itemText: TextView = itemView.findViewById(R.id.RVTextView)
 
-        init {
-            itemText = itemView.findViewById(R.id.RVTextView)
-        }
     }
 
 }

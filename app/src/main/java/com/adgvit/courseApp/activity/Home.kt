@@ -21,10 +21,6 @@ import com.google.android.material.appbar.CollapsingToolbarLayout
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.json.JSONObject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-
 class Home : AppCompatActivity() {
 
     lateinit var viewModel: HomeViewModel
@@ -34,8 +30,10 @@ class Home : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+        collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar)
+        collapsingToolbarLayout.title = "Courses"
 
-//        collapsingToolbarLayout.title = "Courses"
+
 
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
