@@ -1,0 +1,143 @@
+Index: app/src/main/java/com/adgvit/courseApp/viewModel/CourseViewModel.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.adgvit.courseApp.viewModel\r\n\r\nimport android.app.Application\r\nimport androidx.lifecycle.AndroidViewModel\r\nimport com.adgvit.courseApp.repo.Repo\r\n\r\nclass CourseViewModel(application: Application): AndroidViewModel(application) {\r\n\r\n    val repo: Repo\r\n\r\n    init {\r\n        repo = Repo(application)\r\n    }\r\n\r\n\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/adgvit/courseApp/viewModel/CourseViewModel.kt b/app/src/main/java/com/adgvit/courseApp/viewModel/CourseViewModel.kt
+--- a/app/src/main/java/com/adgvit/courseApp/viewModel/CourseViewModel.kt	(revision 11b509569768266fabd9a0ab08d30369b89e022e)
++++ b/app/src/main/java/com/adgvit/courseApp/viewModel/CourseViewModel.kt	(date 1643406562550)
+@@ -6,10 +6,10 @@
+ 
+ class CourseViewModel(application: Application): AndroidViewModel(application) {
+ 
+-    val repo: Repo
++    // val repo: Repo
+ 
+     init {
+-        repo = Repo(application)
++        // repo = Repo(application)
+     }
+ 
+ 
+Index: app/src/main/java/com/adgvit/courseApp/repo/Repo.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.adgvit.courseApp.repo\r\n\r\nimport android.widget.Toast\r\nimport androidx.lifecycle.LiveData\r\nimport androidx.lifecycle.MutableLiveData\r\nimport com.adgvit.courseApp.Models.Docs\r\nimport com.adgvit.courseApp.NetworkUtils.NetworkAPI\r\nimport com.adgvit.courseApp.NetworkUtils.NetworkUtils\r\nimport retrofit2.Call\r\nimport retrofit2.Callback\r\nimport retrofit2.Response\r\nimport java.util.ArrayList\r\n\r\nclass Repo(val networkAPI: NetworkAPI) {\r\n    fun getAllCourse(): Call<List<Docs>> = networkAPI.getAllCurriculums()\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/adgvit/courseApp/repo/Repo.kt b/app/src/main/java/com/adgvit/courseApp/repo/Repo.kt
+--- a/app/src/main/java/com/adgvit/courseApp/repo/Repo.kt	(revision 11b509569768266fabd9a0ab08d30369b89e022e)
++++ b/app/src/main/java/com/adgvit/courseApp/repo/Repo.kt	(date 1643408433980)
+@@ -3,6 +3,7 @@
+ import android.widget.Toast
+ import androidx.lifecycle.LiveData
+ import androidx.lifecycle.MutableLiveData
++import com.adgvit.courseApp.Models.Course
+ import com.adgvit.courseApp.Models.Docs
+ import com.adgvit.courseApp.NetworkUtils.NetworkAPI
+ import com.adgvit.courseApp.NetworkUtils.NetworkUtils
+@@ -12,5 +13,9 @@
+ import java.util.ArrayList
+ 
+ class Repo(val networkAPI: NetworkAPI) {
++
+     fun getAllCourse(): Call<List<Docs>> = networkAPI.getAllCurriculums()
++
++    fun getCourseFromCode(code: String): Call<Course> = networkAPI.getCourseFromCode(code)
++
+ }
+\ No newline at end of file
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    package=\"com.adgvit.courseApp\">\r\n\r\n    <uses-permission android:name=\"android.permission.INTERNET\" />\r\n\r\n    <application\r\n        android:allowBackup=\"true\"\r\n        android:icon=\"@mipmap/ic_launcher\"\r\n        android:label=\"@string/app_name\"\r\n        android:networkSecurityConfig=\"@xml/network_security_config\"\r\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\r\n        android:supportsRtl=\"true\"\r\n        android:theme=\"@style/Theme.CurriculumVIT\">\r\n        <activity\r\n            android:name=\".activity.Splash\"\r\n            android:exported=\"true\">\r\n\r\n        </activity>\r\n        <activity\r\n            android:name=\".activity.Module\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".activity.CourseActivity\"\r\n            android:exported=\"true\" >\r\n\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n\r\n        </activity>\r\n        <activity\r\n            android:name=\".activity.Home\"\r\n            android:exported=\"true\">\r\n        </activity>\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+--- a/app/src/main/AndroidManifest.xml	(revision 11b509569768266fabd9a0ab08d30369b89e022e)
++++ b/app/src/main/AndroidManifest.xml	(date 1643406682313)
+@@ -16,6 +16,12 @@
+             android:name=".activity.Splash"
+             android:exported="true">
+ 
++            <intent-filter>
++                <action android:name="android.intent.action.MAIN" />
++
++                <category android:name="android.intent.category.LAUNCHER" />
++            </intent-filter>
++
+         </activity>
+         <activity
+             android:name=".activity.Module"
+@@ -24,12 +30,6 @@
+             android:name=".activity.CourseActivity"
+             android:exported="true" >
+ 
+-            <intent-filter>
+-                <action android:name="android.intent.action.MAIN" />
+-
+-                <category android:name="android.intent.category.LAUNCHER" />
+-            </intent-filter>
+-
+         </activity>
+         <activity
+             android:name=".activity.Home"
+Index: app/src/main/java/com/adgvit/courseApp/viewModel/HomeViewModel.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.adgvit.courseApp.viewModel\r\n\r\nimport android.app.Application\r\nimport androidx.lifecycle.AndroidViewModel\r\nimport androidx.lifecycle.MutableLiveData\r\nimport androidx.lifecycle.ViewModel\r\nimport com.adgvit.courseApp.Models.Docs\r\nimport com.adgvit.courseApp.NetworkUtils.NetworkUtils\r\nimport com.adgvit.courseApp.repo.Repo\r\nimport retrofit2.Call\r\nimport retrofit2.Callback\r\nimport retrofit2.Response\r\n\r\nclass HomeViewModel(private val repository: Repo, application: Application) : AndroidViewModel(application) {\r\n\r\n\r\n//    val repository: Repo = Repo(NetworkUtils.getNetworkAPIInstance())\r\n    val allCourse = MutableLiveData<List<Docs>>()\r\n    val myCourse = MutableLiveData<List<Docs>>()\r\n    val errorMessage = MutableLiveData<String>()\r\n    fun getAllCourse(){\r\n\r\n        val call = repository.getAllCourse()\r\n        call.enqueue(object: Callback<List<Docs>>{\r\n            override fun onResponse(call: Call<List<Docs>>, response: Response<List<Docs>>) {\r\n                if(!response.isSuccessful){\r\n                    errorMessage.postValue(response.message())\r\n                    return\r\n                }\r\n                else{\r\n\r\n                    allCourse.postValue(response.body())\r\n                }\r\n\r\n            }\r\n\r\n            override fun onFailure(call: Call<List<Docs>>, t: Throwable) {\r\n                errorMessage.postValue(t.message)\r\n            }\r\n\r\n        })\r\n    }\r\n\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/adgvit/courseApp/viewModel/HomeViewModel.kt b/app/src/main/java/com/adgvit/courseApp/viewModel/HomeViewModel.kt
+--- a/app/src/main/java/com/adgvit/courseApp/viewModel/HomeViewModel.kt	(revision 11b509569768266fabd9a0ab08d30369b89e022e)
++++ b/app/src/main/java/com/adgvit/courseApp/viewModel/HomeViewModel.kt	(date 1643408744137)
+@@ -1,6 +1,8 @@
+ package com.adgvit.courseApp.viewModel
+ 
+ import android.app.Application
++import android.content.Context.MODE_PRIVATE
++import android.content.SharedPreferences
+ import androidx.lifecycle.AndroidViewModel
+ import androidx.lifecycle.MutableLiveData
+ import androidx.lifecycle.ViewModel
+@@ -18,10 +20,12 @@
+     val allCourse = MutableLiveData<List<Docs>>()
+     val myCourse = MutableLiveData<List<Docs>>()
+     val errorMessage = MutableLiveData<String>()
++
+     fun getAllCourse(){
+ 
+         val call = repository.getAllCourse()
+         call.enqueue(object: Callback<List<Docs>>{
++
+             override fun onResponse(call: Call<List<Docs>>, response: Response<List<Docs>>) {
+                 if(!response.isSuccessful){
+                     errorMessage.postValue(response.message())
+Index: app/src/main/java/com/adgvit/courseApp/activity/CourseActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.adgvit.courseApp.activity\r\n\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport android.os.Bundle\r\nimport android.util.Log\r\nimport android.widget.Toast\r\nimport androidx.lifecycle.ViewModelProvider\r\nimport com.adgvit.courseApp.Models.Course\r\nimport com.adgvit.courseApp.NetworkUtils.NetworkUtils\r\nimport com.adgvit.courseApp.R\r\nimport com.adgvit.courseApp.databinding.ActivityCourseBinding\r\nimport com.adgvit.courseApp.databinding.ActivityHomeBinding\r\nimport com.adgvit.courseApp.viewModel.HomeViewModel\r\nimport com.google.android.material.tabs.TabLayout\r\nimport kotlinx.coroutines.GlobalScope\r\nimport kotlinx.coroutines.launch\r\nimport retrofit2.Call\r\nimport retrofit2.Callback\r\nimport retrofit2.Response\r\n\r\nclass CourseActivity : AppCompatActivity() {\r\n\r\n    private lateinit var viewModel: HomeViewModel\r\n\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        setContentView(R.layout.activity_course)\r\n\r\n        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)\r\n\r\n        Toast.makeText(applicationContext, \"\" + viewModel.getCourse(\"CSE2013\").code, Toast.LENGTH_LONG).show()\r\n\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/adgvit/courseApp/activity/CourseActivity.kt b/app/src/main/java/com/adgvit/courseApp/activity/CourseActivity.kt
+--- a/app/src/main/java/com/adgvit/courseApp/activity/CourseActivity.kt	(revision 11b509569768266fabd9a0ab08d30369b89e022e)
++++ b/app/src/main/java/com/adgvit/courseApp/activity/CourseActivity.kt	(date 1643406655424)
+@@ -26,9 +26,9 @@
+         super.onCreate(savedInstanceState)
+         setContentView(R.layout.activity_course)
+ 
+-        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
++        // viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+ 
+-        Toast.makeText(applicationContext, "" + viewModel.getCourse("CSE2013").code, Toast.LENGTH_LONG).show()
++        // Toast.makeText(applicationContext, "" + viewModel.getCourse("CSE2013").code, Toast.LENGTH_LONG).show()
+ 
+     }
+ }
+\ No newline at end of file

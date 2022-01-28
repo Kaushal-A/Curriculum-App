@@ -21,7 +21,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 //    val myCourse: LiveData<List<Course>>
     fun getAllCourse(){
 
-        val call = repo.getAllCourse()
+        val call: Call<List<Docs>> = repo.getAllCourse()
         call.enqueue(object: Callback<List<Docs>>{
             override fun onResponse(call: Call<List<Docs>>, response: Response<List<Docs>>) {
                 val course= ArrayList<Docs>()
