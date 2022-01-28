@@ -42,6 +42,9 @@ class Home : AppCompatActivity(), ICourseRVAdapter {
         viewModel.allCourse.observe(this, Observer {
             allCourseRVAdapter.updateRV(it)
         })
+        viewModel.myCourse.observe(this, Observer {
+            myCourseRvAdapter.updateRV(it)
+        })
         viewModel.errorMessage.observe(this, Observer {
             Toast.makeText(this,it,Toast.LENGTH_LONG)
         })
