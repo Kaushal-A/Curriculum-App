@@ -5,11 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.view.menu.MenuView
 import androidx.recyclerview.widget.RecyclerView
 import com.adgvit.courseApp.Models.Docs
 import com.adgvit.courseApp.R
-import com.adgvit.courseApp.databinding.CourseItemsBinding
 
 class CourseRVAdapter(
     val listener: ICourseRVAdapter
