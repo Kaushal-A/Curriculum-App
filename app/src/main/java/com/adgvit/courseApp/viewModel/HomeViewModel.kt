@@ -24,14 +24,16 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         val call = repo.getAllCourse()
         call.enqueue(object: Callback<List<Docs>>{
             override fun onResponse(call: Call<List<Docs>>, response: Response<List<Docs>>) {
+                val course= ArrayList<Docs>()
                 if(!response.isSuccessful){
                     errorMessage.postValue(response.message())
                     return
                 }
                 else{
                     for(doc in response.body()!!){
-
+                        course.add(doc)
                     }
+                    allCourse.postValue(course)
                 }
 
             }

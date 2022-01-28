@@ -2,6 +2,8 @@ package com.adgvit.courseApp.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -37,6 +39,13 @@ class Home : AppCompatActivity(), ICourseRVAdapter {
         rcvMycourse.adapter = myCourseRvAdapter
         rcvAllCourse.adapter = allCourseRVAdapter
 
+        viewModel.allCourse.observe(this, Observer {
+            allCourseRVAdapter.updateRV(it)
+        })
+        viewModel.errorMessage.observe(this, Observer {
+            Toast.makeText(this,it,Toast.LENGTH_LONG)
+        })
+        viewModel.getAllCourse()
 
     }
 
