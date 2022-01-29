@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.adgvit.courseApp.Models.Docs
 import com.adgvit.courseApp.NetworkUtils.NetworkUtils
 import com.adgvit.courseApp.repo.Repo
-import com.adgvit.courseApp.tinyDB.TinyDB
+//import com.adgvit.courseApp.tinyDB.TinyDB
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,7 +18,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     val allCourse = MutableLiveData<List<Docs>>()
     val myCourse = MutableLiveData<List<Docs>>()
     val errorMessage = MutableLiveData<String>()
-    var tinyDB : TinyDB = TinyDB(application.applicationContext)
+//    var tinyDB : TinyDB = TinyDB(application.applicationContext)
 
     //    val allCourse: LiveData<List<Course>>
 //    val myCourse: LiveData<List<Course>>
@@ -37,16 +37,16 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
                     return
                 }
                 else{
-                    favourites  = tinyDB.getListString("favourites")
+//                    favourites  = tinyDB.getListString("favourites")
 
-                    for(doc in response.body()!!){
-                        if(!favourites.contains(doc.code))
-                          allCourseList.add(doc)
-                        else{
-                            doc.favourite = true
-                            myCourseList.add(doc)
-                        }
-                    }
+//                    for(doc in response.body()!!){
+//                        if(!favourites.contains(doc.code))
+//                          allCourseList.add(doc)
+//                        else{
+//                            doc.favourite = true
+//                            myCourseList.add(doc)
+//                        }
+//                    }
                     allCourse.postValue(allCourseList)
                     myCourse.postValue(myCourseList)
                 }

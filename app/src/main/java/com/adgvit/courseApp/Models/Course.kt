@@ -8,7 +8,7 @@ class Course (
     @SerializedName("_id"        ) var Id        : String?           = null,
     @SerializedName("name"       ) var name      : String?           = null,
     @SerializedName("code"       ) var code      : String?           = null,
-    @SerializedName("textbooks"  ) var textbooks : String?           = null,
+    @SerializedName("textbooks"  ) var textbooks : ArrayList<String>?           = null,
     @SerializedName("refer_book" ) var referBook : ArrayList<String> = arrayListOf(),
     @SerializedName("__v"        ) var _v        : Int?              = null
   ) {
