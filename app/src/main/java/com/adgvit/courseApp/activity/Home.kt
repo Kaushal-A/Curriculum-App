@@ -1,5 +1,6 @@
 package com.adgvit.courseApp.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -46,18 +47,21 @@ class Home : AppCompatActivity(), ICourseRVAdapter {
             myCourseRvAdapter.updateRV(it)
         })
         viewModel.errorMessage.observe(this, Observer {
-            Toast.makeText(this,it,Toast.LENGTH_LONG)
+            Toast.makeText(this,it,Toast.LENGTH_LONG).show()
         })
         viewModel.getAllCourse()
 
     }
 
     override fun onStarClicked(course: Docs) {
-        TODO("Not yet implemented")
+        viewModel.toggleFav(course)
+
     }
 
     override fun onItemClicked(course: Docs) {
-        TODO("Not yet implemented")
+        val intent = Intent(this, CourseActivity::class.java)
+        intent.putExtra("code", course.code)
+        startActivity(intent)
     }
 
 }

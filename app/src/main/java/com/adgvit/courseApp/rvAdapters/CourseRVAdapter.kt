@@ -38,7 +38,13 @@ class CourseRVAdapter(
                     currcourse.apply { favourite = !favourite }
                     listener.onStarClicked(currcourse)
                 }
+                holder.itemView.setOnClickListener {
+                    val position: Int = holder.adapterPosition;
+                    val currcourse = courseList[position]
+                    listener.onItemClicked(currcourse)
+                }
             }
+
 //        }
     }
 

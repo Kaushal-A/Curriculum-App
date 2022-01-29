@@ -13,9 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CurriculumVIT">
         <activity
-            android:name=".ModulesFragment"
-            android:exported="false" />
-        <activity
             android:name=".activity.Splash"
             android:exported="true"></activity>
         <activity
