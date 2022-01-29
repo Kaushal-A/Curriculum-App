@@ -18,4 +18,6 @@ class Repo(val networkAPI: NetworkAPI) {
 
     fun getCourseFromCode(code: String): Call<Course> = networkAPI.getCourseFromCode(code)
 
+    fun getSearchedCourse(str: String): Call<List<Docs>> = networkAPI.getSearchedCurriculums(str)
+
 }

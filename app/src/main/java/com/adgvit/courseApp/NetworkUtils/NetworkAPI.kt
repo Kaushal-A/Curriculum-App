@@ -21,4 +21,10 @@ interface NetworkAPI {
     @GET("curriculum/code/{code}")
     fun getCourseFromCode(@Path("code") code: String): retrofit2.Call<Course>
 
+
+    @Headers("Authorization: E5sRRXq3mS2BoUJ")
+    @GET("curriculum/search")
+    fun getSearchedCurriculums(@Query("q") searchText: String): retrofit2.Call<List<Docs>>
+
+
 }

@@ -14,12 +14,6 @@
         android:theme="@style/Theme.CurriculumVIT">
         <activity
             android:name=".activity.Splash"
-            android:exported="true"></activity>
-        <activity
-            android:name=".activity.Module"
-            android:exported="false" />
-        <activity
-            android:name=".activity.CourseActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,8 +22,14 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".activity.Module"
+            android:exported="false" />
+        <activity
+            android:name=".activity.CourseActivity"
+            android:exported="true" />
+        <activity
             android:name=".activity.Home"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>
