@@ -8,8 +8,6 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.adgvit.courseApp.R
-import com.adgvit.courseApp.databinding.ActivityCourseBinding
-import com.adgvit.courseApp.databinding.ActivityHomeBinding
 import com.adgvit.courseApp.viewModel.CourseViewModel
 import com.google.android.material.tabs.TabLayout
 
@@ -25,9 +23,7 @@ class CourseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityCourseBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
+        setContentView(R.layout.activity_course)
 
         textviewJ = findViewById(R.id.J_text_view)
         textviewT = findViewById(R.id.T_text_view)
@@ -38,8 +34,8 @@ class CourseActivity : AppCompatActivity() {
         courseViewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory(application)).get(CourseViewModel::class.java)
 
         courseViewModel.course.observe(this, Observer {
-            Toast.makeText(applicationContext, "" + it.code, Toast.LENGTH_LONG).show()
-            Log.i("MADARCHODNIYO", "" + it.code)
+//            Toast.makeText(applicationContext, "" + it.code, Toast.LENGTH_LONG).show()
+            Log.i("Error", "" + it.code)
             textviewJ.text = it.credits?.J
             textviewT.text = it.credits?.T
             textviewL.text = it.credits?.L
@@ -47,8 +43,12 @@ class CourseActivity : AppCompatActivity() {
             textviewCredits.text = it.credits?.C
         })
 
+        val ccode = intent.getStringExtra("code")
         // Toast.makeText(applicationContext, "BHAIIIIAIS", Toast.LENGTH_LONG).show()
-        courseViewModel.getCourseFromCode("CSE2013")
+        ccode?.let {
+            courseViewModel.getCourseFromCode(ccode)
+            Toast.makeText(applicationContext, "" + ccode, Toast.LENGTH_LONG).show()
+        }
 
 
 
