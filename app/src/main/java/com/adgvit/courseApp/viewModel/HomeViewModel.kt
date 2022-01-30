@@ -97,17 +97,17 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
                     return
                 }
                 else{
-//                    favourites  = tinyDB.getListString("favourites")
+                    favourites  = tinyDB.getListString("favourites")
                     allCourseList.clear()
                     myCourseList.clear()
-//                    for(doc in response.body()!!){
-//                        if(!favourites.contains(doc.code))
-//                            allCourseList.add(doc)
-//                        else{
-//                            doc.favourite = true
-//                            myCourseList.add(doc)
-//                        }
-//                    }
+                    for(doc in response.body()!!){
+                        if(!favourites.contains(doc.code))
+                            allCourseList.add(doc)
+                        else{
+                            doc.favourite = true
+                            myCourseList.add(doc)
+                        }
+                    }
                     allCourse.postValue(allCourseList)
                     myCourse.postValue(myCourseList)
                 }
@@ -115,7 +115,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
             }
 
             override fun onFailure(call: Call<List<Docs>>, t: Throwable) {
-                errorMessage.postValue(t.message)
+//                errorMessage.postValue(t.message)
             }
 
         })
