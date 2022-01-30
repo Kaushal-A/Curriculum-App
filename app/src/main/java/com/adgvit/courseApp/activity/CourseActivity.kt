@@ -75,7 +75,7 @@ class CourseActivity : AppCompatActivity() {
 
         })
 
-        courseViewModel.getCourseFromCode("CSE2013")
+        courseViewModel.getCourseFromCode("CSE2001")
         val ccode = intent.getStringExtra("code")
         // Toast.makeText(applicationContext, "BHAIIIIAIS", Toast.LENGTH_LONG).show()
         ccode?.let {

@@ -44,10 +44,4 @@ class TextbookFragment : Fragment() {
 
         return view
     }
-
-    fun setAdapter()
-    {
-        recViewTextbook.adapter = ModuleRVAdapter()
-    }
-
 }

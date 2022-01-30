@@ -18,19 +18,25 @@ class CourseReferencesAdapter() : RecyclerView.Adapter<CourseReferencesAdapter.V
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.course_modules_item, parent, false)
+            .inflate(R.layout.course_textbooks_item, parent, false)
 
         return CourseReferencesAdapter.ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-//        with(ReferenceList[position])
-//        {
-//            holder.textView.text = this.
-//        }
+        with(ReferenceList[position])
+        {
+            holder.textView.text = this
+        }
     }
 
     override fun getItemCount(): Int {
         return ReferenceList.size
+    }
+
+    fun updateRV(allCourse: ArrayList<String>){
+        ReferenceList.clear()
+        ReferenceList.addAll(allCourse)
+        notifyDataSetChanged()
     }
 }

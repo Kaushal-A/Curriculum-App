@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import com.adgvit.courseApp.Models.Docs
 import com.adgvit.courseApp.NetworkUtils.NetworkUtils
 import com.adgvit.courseApp.repo.Repo
-import com.adgvit.courseApp.tinyDB.TinyDB
+//import com.adgvit.courseApp.tinyDB.TinyDB
 //import com.adgvit.courseApp.tinyDB.TinyDB
 import retrofit2.Call
 import retrofit2.Callback
@@ -24,7 +24,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     val errorMessage = MutableLiveData<String>()
     val allCourseList= ArrayList<Docs>()
     val myCourseList= ArrayList<Docs>()
-    var tinyDB : TinyDB = TinyDB(application.applicationContext)
+//    var tinyDB : TinyDB = TinyDB(application.applicationContext)
 
     //    val allCourse: LiveData<List<Course>>
 //    val myCourse: LiveData<List<Course>>
@@ -43,16 +43,16 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
                     return
                 }
                 else{
-                    favourites  = tinyDB.getListString("favourites")
+//                    favourites  = tinyDB.getListString("favourites")
 
-                    for(doc in response.body()!!){
-                        if(!favourites.contains(doc.code))
-                          allCourseList.add(doc)
-                        else{
-                            doc.favourite = true
-                            myCourseList.add(doc)
-                        }
-                    }
+//                    for(doc in response.body()!!){
+//                        if(!favourites.contains(doc.code))
+//                          allCourseList.add(doc)
+//                        else{
+//                            doc.favourite = true
+//                            myCourseList.add(doc)
+//                        }
+//                    }
                     allCourse.postValue(allCourseList)
                     myCourse.postValue(myCourseList)
                 }
@@ -66,19 +66,19 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         })
     }
     fun toggleFav(doc: Docs){
-        val favourites: ArrayList<String> = tinyDB.getListString("favourites")
+//        val favourites: ArrayList<String> = tinyDB.getListString("favourites")
         if(doc.favourite){
             myCourseList.add(doc)
             allCourseList.remove(doc)
-            favourites.add(doc.code)
-            tinyDB.putListString("favourites",favourites)
+//            favourites.add(doc.code)
+//            tinyDB.putListString("favourites",favourites)
             Toast.makeText(getApplication(),"Course added to My Course",Toast.LENGTH_SHORT).show()
         }
         else{
             myCourseList.remove(doc)
             allCourseList.add(doc)
-            favourites.remove(doc.code)
-            tinyDB.putListString("favourites",favourites)
+//            favourites.remove(doc.code)
+//            tinyDB.putListString("favourites",favourites)
             Toast.makeText(getApplication(),"Course removed to My Course",Toast.LENGTH_SHORT).show()
         }
         myCourse.value = myCourseList
@@ -97,17 +97,17 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
                     return
                 }
                 else{
-                    favourites  = tinyDB.getListString("favourites")
+//                    favourites  = tinyDB.getListString("favourites")
                     allCourseList.clear()
                     myCourseList.clear()
-                    for(doc in response.body()!!){
-                        if(!favourites.contains(doc.code))
-                            allCourseList.add(doc)
-                        else{
-                            doc.favourite = true
-                            myCourseList.add(doc)
-                        }
-                    }
+//                    for(doc in response.body()!!){
+//                        if(!favourites.contains(doc.code))
+//                            allCourseList.add(doc)
+//                        else{
+//                            doc.favourite = true
+//                            myCourseList.add(doc)
+//                        }
+//                    }
                     allCourse.postValue(allCourseList)
                     myCourse.postValue(myCourseList)
                 }
