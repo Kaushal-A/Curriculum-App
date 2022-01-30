@@ -18,6 +18,7 @@
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
+            android:descendantFocusability="blocksDescendants"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
@@ -26,6 +27,12 @@
             app:expandedTitleMarginStart="20dp"
             app:expandedTitleTextAppearance="@style/TextAppearance.Expanded"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                app:layout_collapseMode="pin" />
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
@@ -39,19 +46,16 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
                     android:layout_marginTop="23dp"
+                    android:elevation="4dp"
                     android:layout_marginRight="12dp"
                     android:src="@drawable/ic_setting"
 
                     />
 
             </RelativeLayout>
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                app:layout_collapseMode="pin" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"

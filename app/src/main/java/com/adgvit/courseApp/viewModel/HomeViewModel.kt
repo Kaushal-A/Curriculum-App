@@ -3,10 +3,12 @@ package com.adgvit.courseApp.viewModel
 import android.app.Application
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.adgvit.courseApp.Models.Docs
 import com.adgvit.courseApp.NetworkUtils.NetworkUtils
 import com.adgvit.courseApp.repo.Repo
+import com.adgvit.courseApp.tinyDB.TinyDB
 //import com.adgvit.courseApp.tinyDB.TinyDB
 //import com.adgvit.courseApp.tinyDB.TinyDB
 import retrofit2.Call
@@ -24,10 +26,8 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     val errorMessage = MutableLiveData<String>()
     val allCourseList= ArrayList<Docs>()
     val myCourseList= ArrayList<Docs>()
-//    var tinyDB : TinyDB = TinyDB(application.applicationContext)
+    var tinyDB : TinyDB = TinyDB(application.applicationContext)
 
-    //    val allCourse: LiveData<List<Course>>
-//    val myCourse: LiveData<List<Course>>
     fun getAllCourse(){
 
         val call: Call<List<Docs>> = repo.getAllCourse()
@@ -43,16 +43,16 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
                     return
                 }
                 else{
-//                    favourites  = tinyDB.getListString("favourites")
+                    favourites  = tinyDB.getListString("favourites")
 
-//                    for(doc in response.body()!!){
-//                        if(!favourites.contains(doc.code))
-//                          allCourseList.add(doc)
-//                        else{
-//                            doc.favourite = true
-//                            myCourseList.add(doc)
-//                        }
-//                    }
+                    for(doc in response.body()!!){
+                        if(!favourites.contains(doc.code))
+                          allCourseList.add(doc)
+                        else{
+                            doc.favourite = true
+                            myCourseList.add(doc)
+                        }
+                    }
                     allCourse.postValue(allCourseList)
                     myCourse.postValue(myCourseList)
                 }

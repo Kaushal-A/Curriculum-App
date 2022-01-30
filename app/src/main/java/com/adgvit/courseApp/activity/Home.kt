@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import android.view.WindowManager
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -16,6 +18,7 @@ import com.adgvit.courseApp.Models.Docs
 import com.adgvit.courseApp.R
 import com.adgvit.courseApp.rvAdapters.CourseRVAdapter
 import com.adgvit.courseApp.rvAdapters.ICourseRVAdapter
+import com.adgvit.courseApp.rvAdapters.Settings_Adapter.intent
 import com.adgvit.courseApp.viewModel.HomeViewModel
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import kotlinx.coroutines.*
@@ -32,6 +35,7 @@ class Home : AppCompatActivity(), ICourseRVAdapter, CoroutineScope {
     private lateinit var myCourseRvAdapter: CourseRVAdapter
     private lateinit var allCourseRVAdapter: CourseRVAdapter
     private lateinit var search: EditText
+    private lateinit var setting: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +52,12 @@ class Home : AppCompatActivity(), ICourseRVAdapter, CoroutineScope {
         rcvMycourse.adapter = myCourseRvAdapter
         rcvAllCourse.adapter = allCourseRVAdapter
         search = findViewById(R.id.search)
+        setting = findViewById(R.id.settings1)
 
+        setting.setOnClickListener {
+           val intent = Intent(this, Settings::class.java)
+            startActivity(intent)
+        }
         viewModel.allCourse.observe(this, Observer {
             allCourseRVAdapter.updateRV(it)
         })
