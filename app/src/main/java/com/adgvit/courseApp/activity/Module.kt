@@ -23,12 +23,23 @@ class Module : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_module)
 
+        //val titles = intent.getSerializableExtra("keyName")
+
+        val titles = ArrayList<String>()
+        titles.add("Mod 1")
+        titles.add("Mod 1")
+        titles.add("Mod 1")
+
         val ModuleRV = findViewById<RecyclerView>(R.id.MRV)
+        val MName = findViewById<TextView>(R.id.ModuleName)
+        val MNo = findViewById<TextView>(R.id.ModuleNo)
+
+        MName.setText(titles[0])
 
         layoutManager = LinearLayoutManager(this)
         ModuleRV.layoutManager = layoutManager
 
-        ModuleAdapter = ModuleRVAdapter()
+        ModuleAdapter = ModuleRVAdapter(titles)
         ModuleRV.adapter = ModuleAdapter
 
     }
