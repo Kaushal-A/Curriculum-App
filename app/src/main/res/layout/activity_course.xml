@@ -235,25 +235,26 @@
         app:tabTextColor="#A1A1A1"
         android:background="@color/black"
         app:tabSelectedTextColor="@color/black"
+        app:tabIndicatorGravity="center"
+        app:tabIndicator="@drawable/rounded_tab_shape"
+        app:tabIndicatorColor="#5FCE99"
+        app:tabIndicatorHeight="28dp"
         android:layout_marginTop="16dp">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_tab_background"
             android:text="MODULES"/>
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_tab_background"
             android:text="TEXTBOOKS"/>
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_tab_background"
-            android:text="REFERENCES"/>
+            android:text="REFERENCES" />
 
     </com.google.android.material.tabs.TabLayout>
 
