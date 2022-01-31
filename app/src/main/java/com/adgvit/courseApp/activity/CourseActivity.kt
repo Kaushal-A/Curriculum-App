@@ -23,11 +23,15 @@ import com.adgvit.courseApp.fragments.TextbookFragment
 import com.adgvit.courseApp.rvAdapters.CourseTextbooksAdapter
 import com.adgvit.courseApp.viewModel.CourseViewModel
 import com.google.android.material.tabs.TabLayout
+import org.w3c.dom.Text
 
 class CourseActivity : AppCompatActivity() {
 
     lateinit var courseViewModel: CourseViewModel
 
+    lateinit var courseabbrev: TextView
+    lateinit var coursename: TextView
+    lateinit var courseCode : TextView
     lateinit var textviewL: TextView
     lateinit var textviewT: TextView
     lateinit var textviewP: TextView
@@ -36,7 +40,6 @@ class CourseActivity : AppCompatActivity() {
 
     lateinit var viewpager: ViewPager
     lateinit var tabLayout: TabLayout
-
     companion object
     {
         var DataList: MutableLiveData<Course> = MutableLiveData<Course>()
@@ -58,6 +61,9 @@ class CourseActivity : AppCompatActivity() {
         textviewL = findViewById(R.id.L_text_view)
         textviewP = findViewById(R.id.P_text_view)
         textviewCredits = findViewById(R.id.credits_text_view)
+        courseabbrev = findViewById(R.id.course_name_coursepage)
+        coursename = findViewById(R.id.course_name_full)
+        courseCode = findViewById(R.id.course_code_coursepage)
 
         courseViewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory(application)).get(CourseViewModel::class.java)
 
@@ -71,17 +77,18 @@ class CourseActivity : AppCompatActivity() {
             textviewL.text = it.credits?.L
             textviewP.text = it.credits?.P
             textviewCredits.text = it.credits?.C
+            coursename.text = it.name
+            courseCode.text = it.code
             DataList.postValue(it)
 
         })
 
         courseViewModel.getCourseFromCode("CSE2001")
-        val ccode = intent.getStringExtra("code")
-        // Toast.makeText(applicationContext, "BHAIIIIAIS", Toast.LENGTH_LONG).show()
-        ccode?.let {
-            courseViewModel.getCourseFromCode(ccode)
-            Toast.makeText(applicationContext, "" + ccode, Toast.LENGTH_LONG).show()
-        }
+//        val ccode = intent.getStringExtra("code")
+//        ccode?.let {
+//            courseViewModel.getCourseFromCode(ccode)
+//            Toast.makeText(applicationContext, "" + ccode, Toast.LENGTH_LONG).show()
+//        }
     }
 
     inner class PageAdapter(fm : FragmentManager) : FragmentPagerAdapter(fm){

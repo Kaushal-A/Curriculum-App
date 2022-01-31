@@ -18,7 +18,7 @@ import com.adgvit.courseApp.Models.Docs
 import com.adgvit.courseApp.R
 import com.adgvit.courseApp.rvAdapters.CourseRVAdapter
 import com.adgvit.courseApp.rvAdapters.ICourseRVAdapter
-import com.adgvit.courseApp.rvAdapters.Settings_Adapter.intent
+//import com.adgvit.courseApp.rvAdapters.Settings_Adapter.intent
 import com.adgvit.courseApp.viewModel.HomeViewModel
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import kotlinx.coroutines.*
@@ -54,10 +54,10 @@ class Home : AppCompatActivity(), ICourseRVAdapter, CoroutineScope {
         search = findViewById(R.id.search)
         setting = findViewById(R.id.settings1)
 
-        setting.setOnClickListener {
-           val intent = Intent(this, Settings::class.java)
-            startActivity(intent)
-        }
+//        setting.setOnClickListener {
+//           val intent = Intent(this, Settings::class.java)
+//            startActivity(intent)
+//        }
         viewModel.allCourse.observe(this, Observer {
             allCourseRVAdapter.updateRV(it)
         })
