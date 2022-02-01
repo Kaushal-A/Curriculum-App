@@ -37,52 +37,59 @@ class CourseModulesAdapter() : RecyclerView.Adapter<CourseModulesAdapter.ViewHol
         try {
             when (position) {
                 0 -> {
-                    holder.textView.text = courseAllTopics.mod1[0]
+                    holder.textView.text = "${position+1}  "+courseAllTopics.mod1[0]
                 }
                 1 -> {
-                    holder.textView.text = courseAllTopics.mod2[0]
+                    holder.textView.text = "${position+1}  "+courseAllTopics.mod2[0]
                 }
                 2 -> {
-                    holder.textView.text = courseAllTopics.mod3[0]
+                    holder.textView.text = "${position+1}  "+courseAllTopics.mod3[0]
                 }
                 3 -> {
-                    holder.textView.text = courseAllTopics.mod4[0]
+                    holder.textView.text = "${position+1}  "+courseAllTopics.mod4[0]
                 }
                 4 -> {
-                    holder.textView.text = courseAllTopics.mod5[0]
+                    holder.textView.text = "${position+1}  "+courseAllTopics.mod5[0]
                 }
                 5 -> {
-                    holder.textView.text = courseAllTopics.mod6[0]
+                    holder.textView.text = "${position+1}  "+courseAllTopics.mod6[0]
                 }
                 6 -> {
-                    holder.textView.text = courseAllTopics.mod7[0]
+                    holder.textView.text = "${position+1}  "+courseAllTopics.mod7[0]
                 }
             }
 
             holder.card.setOnClickListener(View.OnClickListener {
-                var intent: Intent = Intent(holder.textView.context,Module::class.java)
+                val intent: Intent = Intent(holder.textView.context,Module::class.java)
 
                 when (position) {
                     0 -> {
                         intent.putStringArrayListExtra("modData",courseAllTopics.mod1)
+                        intent.putExtra("modNo",position+1)
                     }
                     1 -> {
                         intent.putStringArrayListExtra("modData",courseAllTopics.mod2)
+                        intent.putExtra("modNo",position+1)
                     }
                     2 -> {
                         intent.putStringArrayListExtra("modData",courseAllTopics.mod3)
+                        intent.putExtra("modNo",position+1)
                     }
                     3 -> {
                         intent.putStringArrayListExtra("modData",courseAllTopics.mod4)
+                        intent.putExtra("modNo",position+1)
                     }
                     4 -> {
                         intent.putStringArrayListExtra("modData",courseAllTopics.mod5)
+                        intent.putExtra("modNo",position+1)
                     }
                     5 -> {
                         intent.putStringArrayListExtra("modData",courseAllTopics.mod6)
+                        intent.putExtra("modNo",position+1)
                     }
                     6 -> {
                         intent.putStringArrayListExtra("modData",courseAllTopics.mod7)
+                        intent.putExtra("modNo",position+1)
                     }
                 }
 
@@ -91,7 +98,7 @@ class CourseModulesAdapter() : RecyclerView.Adapter<CourseModulesAdapter.ViewHol
 
         }catch (e: Exception) {
             Toast.makeText(holder.textView.context,e.localizedMessage,Toast.LENGTH_LONG ).show()
-            System.out.println("ERROR : " + e.localizedMessage)
+//            System.out.println("ERROR : " + e.localizedMessage)
         }
     }
 

@@ -18,6 +18,7 @@ class Module : AppCompatActivity() {
         setContentView(R.layout.activity_module)
 
         val titles: ArrayList<String> = intent.getStringArrayListExtra("modData") as ArrayList<String>
+        val modNo: Int = intent.getIntExtra("modNo",0)
         /*titles.add("Mod 1")
         titles.add("Mod 1")
         titles.add("Mod 1")*/
@@ -26,7 +27,8 @@ class Module : AppCompatActivity() {
         val MName = findViewById<TextView>(R.id.ModuleName)
         val MNo = findViewById<TextView>(R.id.ModuleNo)
 
-        MName.setText(titles[0])
+        MName.text = titles[0]
+        MNo.text = "Module $modNo"
 
         layoutManager = LinearLayoutManager(this)
         ModuleRV.layoutManager = layoutManager

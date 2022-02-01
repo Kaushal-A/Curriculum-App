@@ -83,12 +83,12 @@ class CourseActivity : AppCompatActivity() {
 
         })
 
-        courseViewModel.getCourseFromCode("CSE2001")
-//        val ccode = intent.getStringExtra("code")
-//        ccode?.let {
-//            courseViewModel.getCourseFromCode(ccode)
-//            Toast.makeText(applicationContext, "" + ccode, Toast.LENGTH_LONG).show()
-//        }
+//        courseViewModel.getCourseFromCode("CSE2001")
+        val ccode = intent.getStringExtra("code")
+        ccode?.let {
+            courseViewModel.getCourseFromCode(ccode)
+            Toast.makeText(applicationContext, "" + ccode, Toast.LENGTH_LONG).show()
+        }
     }
 
     inner class PageAdapter(fm : FragmentManager) : FragmentPagerAdapter(fm){
