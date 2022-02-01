@@ -28,6 +28,10 @@
         <entry key="app/src/main/res/layout/activity_module.xml" value="0.25092592592592594" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.2" />
         <entry key="app/src/main/res/layout/course_items.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/course_modules_item.xml" value="0.25092592592592594" />
+        <entry key="app/src/main/res/layout/course_textbooks_item.xml" value="0.25092592592592594" />
+        <entry key="app/src/main/res/layout/fragment_module.xml" value="0.25092592592592594" />
+        <entry key="app/src/main/res/layout/recyclerview_module_text.xml" value="0.24748858447488584" />
       </map>
     </option>
   </component>

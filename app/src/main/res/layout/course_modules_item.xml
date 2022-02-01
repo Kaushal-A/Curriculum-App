@@ -22,7 +22,7 @@
             android:text=""
             android:fontFamily="@font/ibmplexsans"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/next_icon"
             app:layout_constraintTop_toTopOf="parent"
