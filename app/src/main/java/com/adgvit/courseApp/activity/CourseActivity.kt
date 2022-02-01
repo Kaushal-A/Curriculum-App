@@ -37,6 +37,7 @@ class CourseActivity : AppCompatActivity() {
     lateinit var textviewP: TextView
     lateinit var textviewJ: TextView
     lateinit var textviewCredits: TextView
+    lateinit var textviewCourseDesc: TextView
 
     lateinit var viewpager: ViewPager
     lateinit var tabLayout: TabLayout
@@ -64,6 +65,7 @@ class CourseActivity : AppCompatActivity() {
         courseabbrev = findViewById(R.id.course_name_coursepage)
         coursename = findViewById(R.id.course_name_full)
         courseCode = findViewById(R.id.course_code_coursepage)
+        textviewCourseDesc = findViewById(R.id.course_desc_coursepage)
 
         courseViewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory(application)).get(CourseViewModel::class.java)
 
@@ -80,14 +82,13 @@ class CourseActivity : AppCompatActivity() {
             coursename.text = it.name
             courseCode.text = it.code
             DataList.postValue(it)
-
+            textviewCourseDesc.text = courseViewModel.getTextCourseDesc(textviewJ, textviewT, textviewL, textviewP)
         })
 
 //        courseViewModel.getCourseFromCode("CSE2001")
         val ccode = intent.getStringExtra("code")
         ccode?.let {
             courseViewModel.getCourseFromCode(ccode)
-            Toast.makeText(applicationContext, "" + ccode, Toast.LENGTH_LONG).show()
         }
     }
 

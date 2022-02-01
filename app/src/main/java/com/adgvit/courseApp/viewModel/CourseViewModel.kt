@@ -2,6 +2,7 @@ package com.adgvit.courseApp.viewModel
 
 import android.app.Application
 import android.util.Log
+import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import retrofit2.Call
@@ -18,6 +19,39 @@ class CourseViewModel(application: Application): AndroidViewModel(application) {
 
     val course: MutableLiveData<Course> = MutableLiveData<Course>()
     val repo: Repo = Repo(NetworkUtils.getNetworkAPIInstance())
+
+    fun getTextCourseDesc(textviewJ: TextView, textviewT: TextView, textviewL: TextView
+    , textviewP: TextView): String {
+        if(textviewJ.text.toString().toInt() > 0 && textviewT.text.toString().toInt() == 0 && textviewL.text.toString().toInt() == 0 && textviewP.text.toString().toInt() == 0)
+        {
+            return "Project Only"
+        }
+        else if(textviewL.text.toString().toInt() > 0 && textviewJ.text.toString().toInt() == 0 && textviewT.text.toString().toInt() == 0 && textviewP.text.toString().toInt() == 0)
+        {
+            return "Theory Only"
+        }
+        else if(textviewL.text.toString().toInt() == 0 && textviewJ.text.toString().toInt() == 0 && textviewT.text.toString().toInt() == 0 && textviewP.text.toString().toInt() > 0)
+        {
+            return "Lab Only"
+        }
+        else if(textviewL.text.toString().toInt() > 0 && textviewJ.text.toString().toInt() > 0 && textviewT.text.toString().toInt() == 0 && textviewP.text.toString().toInt() == 0)
+        {
+            return "Embedded Theory and Project"
+        }
+        else if(textviewL.text.toString().toInt() > 0 && textviewJ.text.toString().toInt() == 0 && textviewT.text.toString().toInt() == 0 && textviewP.text.toString().toInt() > 0)
+        {
+            return "Embedded Theory and Lab"
+        }
+        else if(textviewL.text.toString().toInt() == 0 && textviewJ.text.toString().toInt() > 0 && textviewT.text.toString().toInt() == 0 && textviewP.text.toString().toInt() > 0)
+        {
+            return "Embedded Lab and Project"
+        }
+        else if(textviewL.text.toString().toInt() > 0 && textviewJ.text.toString().toInt() > 0 && textviewT.text.toString().toInt() == 0 && textviewP.text.toString().toInt() > 0)
+        {
+            return "Embedded Theory, Lab and Project"
+        }
+        return ""
+    }
 
     fun getCourseFromCode(code: String) {
 

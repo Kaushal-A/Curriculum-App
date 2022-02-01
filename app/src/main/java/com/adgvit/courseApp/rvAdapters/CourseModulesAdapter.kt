@@ -2,6 +2,7 @@ package com.adgvit.courseApp.rvAdapters
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -97,7 +98,7 @@ class CourseModulesAdapter() : RecyclerView.Adapter<CourseModulesAdapter.ViewHol
             })
 
         }catch (e: Exception) {
-            Toast.makeText(holder.textView.context,e.localizedMessage,Toast.LENGTH_LONG ).show()
+            Log.i("MADARCHOD",e.message.toString())
 //            System.out.println("ERROR : " + e.localizedMessage)
         }
     }

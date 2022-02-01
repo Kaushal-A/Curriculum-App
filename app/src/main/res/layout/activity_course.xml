@@ -241,28 +241,30 @@
         android:id="@+id/tab_layout_course"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/course_desc_coursepage"
-        app:tabTextColor="#A1A1A1"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:background="@color/black"
-        app:tabSelectedTextColor="@color/black"
-        app:tabIndicatorGravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/course_desc_coursepage"
         app:tabIndicator="@drawable/rounded_tab_shape"
         app:tabIndicatorColor="#5FCE99"
+        app:tabIndicatorGravity="center"
         app:tabIndicatorHeight="28dp"
-        android:layout_marginTop="16dp"
-        app:tabRippleColor="@null"        >
+        app:tabRippleColor="@null"
+        app:tabSelectedTextColor="@color/black"
+        app:tabTextColor="#A1A1A1">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="MODULES"/>
+            android:text="MODULES" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TEXTBOOKS"/>
+            android:text="TEXTBOOKS" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
