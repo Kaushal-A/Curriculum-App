@@ -35,7 +35,9 @@ class CourseRVAdapter(
                 holder.imageStar.setOnClickListener{
                     val position: Int = holder.adapterPosition;
                     val currcourse = courseList[position]
-                    currcourse.apply { favourite = !favourite }
+                    currcourse.apply {
+                        favourite = !favourite
+                    }
                     listener.onStarClicked(currcourse)
                 }
                 holder.itemView.setOnClickListener {

@@ -4,6 +4,8 @@ package com.adgvit.courseApp.activity
 //import com.adgvit.courseApp.databinding.ActivityHomeBinding
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -38,6 +40,7 @@ class CourseActivity : AppCompatActivity() {
     lateinit var textviewJ: TextView
     lateinit var textviewCredits: TextView
     lateinit var textviewCourseDesc: TextView
+    lateinit var back:ImageView
 
     lateinit var viewpager: ViewPager
     lateinit var tabLayout: TabLayout
@@ -66,6 +69,11 @@ class CourseActivity : AppCompatActivity() {
         coursename = findViewById(R.id.course_name_full)
         courseCode = findViewById(R.id.course_code_coursepage)
         textviewCourseDesc = findViewById(R.id.course_desc_coursepage)
+        back = findViewById<ImageView>(R.id.settings_back)
+
+
+
+        back.setOnClickListener(View.OnClickListener { finish() })
 
         courseViewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory(application)).get(CourseViewModel::class.java)
 
@@ -83,6 +91,7 @@ class CourseActivity : AppCompatActivity() {
             courseCode.text = it.code
             DataList.postValue(it)
             textviewCourseDesc.text = courseViewModel.getTextCourseDesc(textviewJ, textviewT, textviewL, textviewP)
+            courseabbrev.text = courseViewModel.getCourseAbbr(coursename.text.toString())
         })
 
 //        courseViewModel.getCourseFromCode("CSE2001")

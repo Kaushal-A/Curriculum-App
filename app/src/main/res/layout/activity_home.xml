@@ -46,10 +46,9 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
                     android:layout_marginTop="23dp"
-                    android:elevation="4dp"
                     android:layout_marginRight="12dp"
+                    android:elevation="4dp"
                     android:src="@drawable/ic_setting"
-
                     />
 
             </RelativeLayout>

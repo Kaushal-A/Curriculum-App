@@ -74,4 +74,27 @@ class CourseViewModel(application: Application): AndroidViewModel(application) {
 
     }
 
+    fun getCourseAbbr(coursename: String): String {
+        val numberOfWords:Int = wordCount(coursename)
+        if(numberOfWords>1) {
+            var initials = ""
+            for (s in coursename.split("\\s+".toRegex())) {
+                if(s.lowercase() != "and") {
+                    initials += s[0].uppercase()
+                }
+            }
+            return initials
+        }
+        return coursename
+    }
+
+    private fun wordCount(str: String): Int {
+        val trimmedStr = str.trim()
+        return if (trimmedStr.isEmpty()) {
+            0
+        } else {
+            trimmedStr.split("\\s+".toRegex()).size
+        }
+    }
+
 }

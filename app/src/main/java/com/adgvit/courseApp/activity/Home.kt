@@ -54,10 +54,10 @@ class Home : AppCompatActivity(), ICourseRVAdapter, CoroutineScope {
         search = findViewById(R.id.search)
         setting = findViewById(R.id.settings1)
 
-//        setting.setOnClickListener {
-//           val intent = Intent(this, Settings::class.java)
-//            startActivity(intent)
-//        }
+        setting.setOnClickListener {
+           val intent = Intent(this, Settings::class.java)
+            startActivity(intent)
+        }
         viewModel.allCourse.observe(this, Observer {
             allCourseRVAdapter.updateRV(it)
         })
