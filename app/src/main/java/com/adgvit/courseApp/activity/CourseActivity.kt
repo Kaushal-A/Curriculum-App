@@ -70,7 +70,7 @@ class CourseActivity : AppCompatActivity() {
         courseViewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory(application)).get(CourseViewModel::class.java)
 
         courseViewModel.course.observe(this, Observer {
-            Toast.makeText(applicationContext, "" + it.code, Toast.LENGTH_LONG).show()
+//            Toast.makeText(applicationContext, "" + it.code, Toast.LENGTH_LONG).show()
             Log.i("Hello", "" + it.code)
 //            Toast.makeText(applicationContext, "" + it.code, Toast.LENGTH_LONG).show()
             Log.i("Error", "" + it.code)
