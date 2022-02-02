@@ -2,6 +2,7 @@ package com.adgvit.courseApp.activity
 
 //import com.adgvit.courseApp.databinding.ActivityCourseBinding
 //import com.adgvit.courseApp.databinding.ActivityHomeBinding
+import android.app.ProgressDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -45,6 +46,7 @@ class CourseActivity : AppCompatActivity() {
 
     lateinit var viewpager: ViewPager
     lateinit var tabLayout: TabLayout
+    private lateinit var showDialog: ProgressDialog
     companion object
     {
         var DataList: MutableLiveData<Course> = MutableLiveData<Course>()
@@ -54,7 +56,7 @@ class CourseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_course)
-
+        showDialog = ProgressDialog(this)
         viewpager = findViewById(R.id.view_pager_course)
         viewpager.adapter = PageAdapter(supportFragmentManager)
 
@@ -77,8 +79,9 @@ class CourseActivity : AppCompatActivity() {
 
         back.setOnClickListener(View.OnClickListener { finish() })
         imageStar.setOnClickListener {
-//            Log.i("STAR", "star clicked")
+            Log.i("STAR", "star clicked")
             courseViewModel.onStarClicked()
+            Home.star=true
         }
         courseViewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory(application)).get(CourseViewModel::class.java)
 
@@ -104,12 +107,19 @@ class CourseActivity : AppCompatActivity() {
                 imageStar.setImageResource(R.drawable.ic_star_notselected)
             }
         })
+        courseViewModel.load.observe(this, Observer {
+            if(it==true)
+                showDialog.show()
+            else
+                showDialog.hide()
+        })
 
 //        courseViewModel.getCourseFromCode("CSE2001")
         val ccode = intent.getStringExtra("code")
         ccode?.let {
             courseViewModel.getCourseFromCode(ccode)
         }
+
     }
 
     inner class PageAdapter(fm : FragmentManager) : FragmentPagerAdapter(fm){

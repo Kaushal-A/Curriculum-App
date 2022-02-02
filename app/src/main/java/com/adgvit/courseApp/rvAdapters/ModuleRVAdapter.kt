@@ -20,7 +20,7 @@ class ModuleRVAdapter(private val titles : ArrayList<String>): RecyclerView.Adap
 
     override fun onBindViewHolder(holder: ModuleRVAdapter.ViewHolder, position: Int) {
         val currentItem = titles[position]
-        holder.itemText.text = "${position+1}  "+currentItem
+        holder.itemText.text = "${position+1}.  "+currentItem
     }
 
     override fun getItemCount(): Int {

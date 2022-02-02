@@ -1,5 +1,7 @@
 package com.adgvit.courseApp.activity
 
+import android.app.Application
+import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,6 +11,7 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -29,17 +32,23 @@ class Home : AppCompatActivity(), ICourseRVAdapter, CoroutineScope {
         get() = Dispatchers.Main
     lateinit var viewModel: HomeViewModel
 
-    lateinit var collapsingToolbarLayout: CollapsingToolbarLayout
-    lateinit var rcvMycourse: RecyclerView
-    lateinit var rcvAllCourse: RecyclerView
+    private lateinit var collapsingToolbarLayout: CollapsingToolbarLayout
+    private lateinit var rcvMycourse: RecyclerView
+    private lateinit var rcvAllCourse: RecyclerView
     private lateinit var myCourseRvAdapter: CourseRVAdapter
     private lateinit var allCourseRVAdapter: CourseRVAdapter
     private lateinit var search: EditText
     private lateinit var setting: ImageView
+    private lateinit var myCourseTextView: TextView
+    private lateinit var showDialog: ProgressDialog
 
+    companion object{
+        var star = false
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
         collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar)
         collapsingToolbarLayout.title = "Courses"
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
@@ -53,6 +62,9 @@ class Home : AppCompatActivity(), ICourseRVAdapter, CoroutineScope {
         rcvAllCourse.adapter = allCourseRVAdapter
         search = findViewById(R.id.search)
         setting = findViewById(R.id.settings1)
+        showDialog = ProgressDialog(this)
+        myCourseTextView = findViewById(R.id.myCoursesHeader)
+
 
         setting.setOnClickListener {
            val intent = Intent(this, Settings::class.java)
@@ -60,20 +72,36 @@ class Home : AppCompatActivity(), ICourseRVAdapter, CoroutineScope {
         }
         viewModel.allCourse.observe(this, Observer {
             allCourseRVAdapter.updateRV(it)
+
+
         })
         viewModel.myCourse.observe(this, Observer {
             myCourseRvAdapter.updateRV(it)
+            if(it.isEmpty())
+                myCourseTextView.visibility = View.GONE
+            else{
+                myCourseTextView.visibility = View.VISIBLE
+            }
         })
         viewModel.errorMessage.observe(this, Observer {
-            Toast.makeText(this,it,Toast.LENGTH_LONG).show()
+//            Toast.makeText(this,it,Toast.LENGTH_LONG).show()
         })
+        viewModel.load.observe(this, Observer {
+            if(it==true)
+                showDialog.show()
+            else
+                showDialog.hide()
+        })
+
         viewModel.getAllCourse()
 
         search.addTextChangedListener(object : TextWatcher{
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
             }
 
             override fun afterTextChanged(p0: Editable?) {
@@ -101,7 +129,10 @@ class Home : AppCompatActivity(), ICourseRVAdapter, CoroutineScope {
 
     override fun onResume() {
         super.onResume()
-        viewModel.getAllCourse()
+        if(star){
+            viewModel.getAllCourse()
+            star=false
+        }
     }
 
     override fun onStarClicked(course: Docs) {
@@ -114,5 +145,6 @@ class Home : AppCompatActivity(), ICourseRVAdapter, CoroutineScope {
         intent.putExtra("code", course.code)
         startActivity(intent)
     }
+
 
 }

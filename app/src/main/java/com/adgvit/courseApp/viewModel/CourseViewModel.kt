@@ -21,6 +21,7 @@ class CourseViewModel(application: Application): AndroidViewModel(application) {
     val course: MutableLiveData<Course> = MutableLiveData<Course>()
     val repo: Repo = Repo(NetworkUtils.getNetworkAPIInstance())
     var tinyDB : TinyDB = TinyDB(application.applicationContext)
+    var load = MutableLiveData<Boolean>(false)
 
     fun getTextCourseDesc(textviewJ: TextView, textviewT: TextView, textviewL: TextView
     , textviewP: TextView): String {
@@ -56,23 +57,26 @@ class CourseViewModel(application: Application): AndroidViewModel(application) {
     }
 
     fun getCourseFromCode(code: String) {
-
-        var call: Call<Course> = repo.getCourseFromCode(code)
+        load.postValue(true)
+        val call: Call<Course> = repo.getCourseFromCode(code)
         var courseData: Course
         call.enqueue(object : Callback<Course> {
             override fun onResponse(call: Call<Course>, response: Response<Course>) {
                 if (!response.isSuccessful) {
                     Log.i("onResponseFailure: ", "" + response.code())
+                    load.postValue(false)
                     return
                 }
                 courseData = response.body()!!
                 val favourites: ArrayList<String> = tinyDB.getListString("favourites")
                 courseData.favourite = favourites.contains(courseData.code)
                 course.postValue(courseData)
+                load.postValue(false)
             }
 
             override fun onFailure(call: Call<Course>, t: Throwable) {
                 Log.i("onFailure: ", "" + t.message)
+                load.postValue(false)
             }
 
         })
@@ -87,13 +91,13 @@ class CourseViewModel(application: Application): AndroidViewModel(application) {
             if (courseData.favourite) {
                 favourites.add(courseData.code.toString())
                 tinyDB.putListString("favourites", favourites)
-                Toast.makeText(getApplication(), "Course added to My Course", Toast.LENGTH_SHORT)
-                    .show()
+//                Toast.makeText(getApplication(), "Course added to My Course", Toast.LENGTH_SHORT)
+//                    .show()
             } else {
                 favourites.remove(courseData.code.toString())
                 tinyDB.putListString("favourites", favourites)
-                Toast.makeText(getApplication(), "Course removed to My Course", Toast.LENGTH_SHORT)
-                    .show()
+//                Toast.makeText(getApplication(), "Course removed to My Course", Toast.LENGTH_SHORT)
+//                    .show()
             }
         }
         course.postValue(courseData!!)

@@ -39,7 +39,11 @@ class TextbookFragment : Fragment() {
         recViewTextbook.adapter = textbookAdapter
 
         CourseActivity.DataList.observe(viewLifecycleOwner, Observer {
-            it.textbooks?.let { it1 -> textbookAdapter.updateRV(it1) }
+            it.textbooks?.let {
+
+                it.remove("")
+                textbookAdapter.updateRV(it)
+            }
         })
 
         return view

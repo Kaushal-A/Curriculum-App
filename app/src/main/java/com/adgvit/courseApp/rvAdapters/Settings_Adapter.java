@@ -102,7 +102,11 @@ public class Settings_Adapter extends RecyclerView.Adapter<Settings_Adapter.Sett
 
                     // Add data to the intent, the receiving app will decide
                     // what to do with it.
-                    share.putExtra(Intent.EXTRA_TEXT, "Find all the latest happenings at ADG within a single app." + "\nJust scroll down and Stay updated!" + "\nGrab your phones and download now." + "\nApp Link : https://play.google.com/store/apps/details?id=com.adgvit.externals");
+                    share.putExtra(Intent.EXTRA_TEXT, "Curriculum App presents the syllabus in a user-friendly manner. Insights:\n" +
+                            "•\tStar mark your favourite subjects for easy access.\n" +
+                            "•\tKnow the distribution of each component of your subject.\n" +
+                            "•\tModule wise division along with topics in each Module.\n" +
+                            "•\tSeparate tab to know about the recommended textbooks and reference books.");
 
                     context.startActivity(Intent.createChooser(share, "Share With Peers"));
                 }
@@ -110,7 +114,7 @@ public class Settings_Adapter extends RecyclerView.Adapter<Settings_Adapter.Sett
                 {
                     Intent intent = new Intent(Intent.ACTION_VIEW);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.setData(Uri.parse("http://privacy.adgvit.com"));
+                    intent.setData(Uri.parse("https://privacy.adgvit.com/coursedb"));
                     context.startActivity(intent);
                 }
             }

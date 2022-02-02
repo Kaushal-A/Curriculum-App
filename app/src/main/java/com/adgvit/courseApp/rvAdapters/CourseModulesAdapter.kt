@@ -38,25 +38,25 @@ class CourseModulesAdapter() : RecyclerView.Adapter<CourseModulesAdapter.ViewHol
         try {
             when (position) {
                 0 -> {
-                    holder.textView.text = "${position+1}  "+courseAllTopics.mod1[0]
+                    holder.textView.text = "${position+1}.  "+courseAllTopics.mod1[0]
                 }
                 1 -> {
-                    holder.textView.text = "${position+1}  "+courseAllTopics.mod2[0]
+                    holder.textView.text = "${position+1}.  "+courseAllTopics.mod2[0]
                 }
                 2 -> {
-                    holder.textView.text = "${position+1}  "+courseAllTopics.mod3[0]
+                    holder.textView.text = "${position+1}.  "+courseAllTopics.mod3[0]
                 }
                 3 -> {
-                    holder.textView.text = "${position+1}  "+courseAllTopics.mod4[0]
+                    holder.textView.text = "${position+1}.  "+courseAllTopics.mod4[0]
                 }
                 4 -> {
-                    holder.textView.text = "${position+1}  "+courseAllTopics.mod5[0]
+                    holder.textView.text = "${position+1}.  "+courseAllTopics.mod5[0]
                 }
                 5 -> {
-                    holder.textView.text = "${position+1}  "+courseAllTopics.mod6[0]
+                    holder.textView.text = "${position+1}.  "+courseAllTopics.mod6[0]
                 }
                 6 -> {
-                    holder.textView.text = "${position+1}  "+courseAllTopics.mod7[0]
+                    holder.textView.text = "${position+1}.f  "+courseAllTopics.mod7[0]
                 }
             }
 

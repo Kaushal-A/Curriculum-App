@@ -1,12 +1,14 @@
 package com.adgvit.courseApp.viewModel
 
 import android.app.Application
+import android.app.ProgressDialog
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.adgvit.courseApp.Models.Docs
 import com.adgvit.courseApp.NetworkUtils.NetworkUtils
+import com.adgvit.courseApp.activity.Home
 import com.adgvit.courseApp.repo.Repo
 import com.adgvit.courseApp.tinyDB.TinyDB
 //import com.adgvit.courseApp.tinyDB.TinyDB
@@ -21,24 +23,26 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repo: Repo = Repo(NetworkUtils.getNetworkAPIInstance())
     val allCourse = MutableLiveData<List<Docs>>()
+    val context = application
     val myCourse = MutableLiveData<List<Docs>>()
     val errorMessage = MutableLiveData<String>()
     val allCourseList= ArrayList<Docs>()
     val myCourseList= ArrayList<Docs>()
     var tinyDB : TinyDB = TinyDB(application.applicationContext)
+    var load: MutableLiveData<Boolean> = MutableLiveData(false)
 
     fun getAllCourse(){
-
+        load.postValue(true)
         val call: Call<List<Docs>> = repo.getAllCourse()
         call.enqueue(object: Callback<List<Docs>>{
             override fun onResponse(call: Call<List<Docs>>, response: Response<List<Docs>>) {
-
 
                 val favourites: ArrayList<String>
                 allCourseList.clear()
                 myCourseList.clear()
                 if(!response.isSuccessful){
                     errorMessage.postValue(response.message())
+                    load.postValue(false)
                     return
                 }
                 else{
@@ -54,17 +58,20 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
                     }
                     allCourse.postValue(allCourseList)
                     myCourse.postValue(myCourseList)
+                    load.postValue(false)
                 }
 
             }
 
             override fun onFailure(call: Call<List<Docs>>, t: Throwable) {
                 errorMessage.postValue(t.message)
+                load.postValue(false)
             }
 
         })
     }
     fun toggleFav(doc: Docs){
+
         doc.apply {
             favourite = !favourite
         }
@@ -74,14 +81,14 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
             allCourseList.remove(doc)
             favourites.add(doc.code)
             tinyDB.putListString("favourites",favourites)
-            Toast.makeText(getApplication(),"Course added to My Course",Toast.LENGTH_SHORT).show()
+//            Toast.makeText(getApplication(),"Course added to My Course",Toast.LENGTH_SHORT).show()
         }
         else{
             myCourseList.remove(doc)
             allCourseList.add(doc)
             favourites.remove(doc.code)
             tinyDB.putListString("favourites",favourites)
-            Toast.makeText(getApplication(),"Course removed to My Course",Toast.LENGTH_SHORT).show()
+//            Toast.makeText(getApplication(),"Course removed to My Course",Toast.LENGTH_SHORT).show()
         }
         myCourse.value = myCourseList
         allCourse.value = allCourseList
