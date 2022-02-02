@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.adgvit.courseApp">
+    package="com.adgvit.courseDB">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CurriculumVIT">
         <activity
-            android:name=".activity.Splash"
+            android:name="com.adgvit.courseDB.activity.Splash"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,19 +23,19 @@
 
         </activity>
         <activity
-            android:name=".activity.Module"
+            android:name="com.adgvit.courseDB.activity.Module"
             android:exported="false" />
         <activity
-            android:name=".activity.CourseActivity"
+            android:name="com.adgvit.courseDB.activity.CourseActivity"
             android:exported="true">
 
 
 
         </activity>
         <activity
-            android:name=".activity.Home"
+            android:name="com.adgvit.courseDB.activity.Home"
             android:exported="true" /> <activity
-            android:name=".activity.Settings"
+            android:name="com.adgvit.courseDB.activity.Settings"
             android:exported="true" />
     </application>
 
