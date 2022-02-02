@@ -41,6 +41,7 @@ class CourseActivity : AppCompatActivity() {
     lateinit var textviewCredits: TextView
     lateinit var textviewCourseDesc: TextView
     lateinit var back:ImageView
+    lateinit var imageStar: ImageView
 
     lateinit var viewpager: ViewPager
     lateinit var tabLayout: TabLayout
@@ -70,6 +71,7 @@ class CourseActivity : AppCompatActivity() {
         courseCode = findViewById(R.id.course_code_coursepage)
         textviewCourseDesc = findViewById(R.id.course_desc_coursepage)
         back = findViewById<ImageView>(R.id.settings_back)
+        imageStar = findViewById(R.id.image_star)
 
 
 

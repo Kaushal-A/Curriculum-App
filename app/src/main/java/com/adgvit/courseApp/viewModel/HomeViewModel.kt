@@ -65,6 +65,9 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         })
     }
     fun toggleFav(doc: Docs){
+        doc.apply {
+            favourite = !favourite
+        }
         val favourites: ArrayList<String> = tinyDB.getListString("favourites")
         if(doc.favourite){
             myCourseList.add(doc)
