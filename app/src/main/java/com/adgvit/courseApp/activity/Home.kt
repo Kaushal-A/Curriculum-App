@@ -99,6 +99,11 @@ class Home : AppCompatActivity(), ICourseRVAdapter, CoroutineScope {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.getAllCourse()
+    }
+
     override fun onStarClicked(course: Docs) {
         viewModel.toggleFav(course)
 

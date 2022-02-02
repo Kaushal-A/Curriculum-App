@@ -10,7 +10,8 @@ class Course (
     @SerializedName("code"       ) var code      : String?           = null,
     @SerializedName("textbooks"  ) var textbooks : ArrayList<String>?           = null,
     @SerializedName("refer_book" ) var referBook : ArrayList<String> = arrayListOf(),
-    @SerializedName("__v"        ) var _v        : Int?              = null
+    @SerializedName("__v"        ) var _v        : Int?              = null,
+    var favourite: Boolean = false
   ) {
 
     data class AllTopics (

@@ -76,7 +76,10 @@ class CourseActivity : AppCompatActivity() {
 
 
         back.setOnClickListener(View.OnClickListener { finish() })
-
+        imageStar.setOnClickListener {
+//            Log.i("STAR", "star clicked")
+            courseViewModel.onStarClicked()
+        }
         courseViewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory(application)).get(CourseViewModel::class.java)
 
         courseViewModel.course.observe(this, Observer {
@@ -94,6 +97,12 @@ class CourseActivity : AppCompatActivity() {
             DataList.postValue(it)
             textviewCourseDesc.text = courseViewModel.getTextCourseDesc(textviewJ, textviewT, textviewL, textviewP)
             courseabbrev.text = courseViewModel.getCourseAbbr(coursename.text.toString())
+            if(it.favourite){
+                imageStar.setImageResource(R.drawable.ic_star_selected)
+            }
+            else{
+                imageStar.setImageResource(R.drawable.ic_star_notselected)
+            }
         })
 
 //        courseViewModel.getCourseFromCode("CSE2001")
