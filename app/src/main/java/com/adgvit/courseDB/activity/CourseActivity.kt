@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -39,6 +40,7 @@ class CourseActivity : AppCompatActivity() {
     lateinit var textviewCourseDesc: TextView
     lateinit var back:ImageView
     lateinit var imageStar: ImageView
+    lateinit var progressBar: ProgressBar
 
     lateinit var viewpager: ViewPager
     lateinit var tabLayout: TabLayout
@@ -70,6 +72,7 @@ class CourseActivity : AppCompatActivity() {
         textviewCourseDesc = findViewById(R.id.course_desc_coursepage)
         back = findViewById<ImageView>(R.id.settings_back)
         imageStar = findViewById(R.id.image_star)
+        progressBar = findViewById(R.id.progress_bar)
 
 
 
@@ -105,9 +108,9 @@ class CourseActivity : AppCompatActivity() {
         })
         courseViewModel.load.observe(this, Observer {
             if(it==true)
-                showDialog.show()
+                progressBar.visibility = ProgressBar.VISIBLE
             else
-                showDialog.hide()
+                progressBar.visibility = ProgressBar.GONE
         })
 
 //        courseViewModel.getCourseFromCode("CSE2001")
@@ -150,5 +153,10 @@ class CourseActivity : AppCompatActivity() {
             return super.getPageTitle(position)
         }
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        courseViewModel.course.value = Course()
     }
 }

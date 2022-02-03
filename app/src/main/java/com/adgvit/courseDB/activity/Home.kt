@@ -9,6 +9,7 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -38,6 +39,7 @@ class Home : AppCompatActivity(), ICourseRVAdapter, CoroutineScope {
     private lateinit var setting: ImageView
     private lateinit var myCourseTextView: TextView
     private lateinit var showDialog: ProgressDialog
+    private lateinit var progressBar: ProgressBar
 
     companion object{
         var star = false
@@ -61,6 +63,7 @@ class Home : AppCompatActivity(), ICourseRVAdapter, CoroutineScope {
         setting = findViewById(R.id.settings1)
         showDialog = ProgressDialog(this)
         myCourseTextView = findViewById(R.id.myCoursesHeader)
+        progressBar = findViewById(R.id.progress_bar)
 
 
         setting.setOnClickListener {
@@ -85,9 +88,9 @@ class Home : AppCompatActivity(), ICourseRVAdapter, CoroutineScope {
         })
         viewModel.load.observe(this, Observer {
             if(it==true)
-                showDialog.show()
+                progressBar.visibility = ProgressBar.VISIBLE
             else
-                showDialog.hide()
+                progressBar.visibility = ProgressBar.GONE
         })
 
         viewModel.getAllCourse()
