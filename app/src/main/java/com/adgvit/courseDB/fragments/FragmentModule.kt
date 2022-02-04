@@ -39,4 +39,9 @@ class FragmentModule : Fragment() {
         return view
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        moduleAdapter.deleteRV()
+    }
+
 }

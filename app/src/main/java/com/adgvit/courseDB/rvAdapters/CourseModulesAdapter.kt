@@ -52,7 +52,7 @@ class CourseModulesAdapter() : RecyclerView.Adapter<CourseModulesAdapter.ViewHol
                     holder.textView.text = "${position+1}.  "+courseAllTopics.mod6[0]
                 }
                 6 -> {
-                    holder.textView.text = "${position+1}.f  "+courseAllTopics.mod7[0]
+                    holder.textView.text = "${position+1}.  "+courseAllTopics.mod7[0]
                 }
             }
 
@@ -108,4 +108,16 @@ class CourseModulesAdapter() : RecyclerView.Adapter<CourseModulesAdapter.ViewHol
 //        courseModuleList.addAll(allCourse)
         notifyDataSetChanged()
     }
+    fun deleteRV(){
+       courseAllTopics.mod1.clear()
+       courseAllTopics.mod2.clear()
+       courseAllTopics.mod3.clear()
+       courseAllTopics.mod4.clear()
+       courseAllTopics.mod5.clear()
+       courseAllTopics.mod6.clear()
+       courseAllTopics.mod7.clear()
+//        courseModuleList.addAll(allCourse)
+        notifyDataSetChanged()
+    }
+
 }

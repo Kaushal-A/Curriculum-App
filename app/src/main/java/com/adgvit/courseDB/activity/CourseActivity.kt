@@ -44,7 +44,6 @@ class CourseActivity : AppCompatActivity() {
 
     lateinit var viewpager: ViewPager
     lateinit var tabLayout: TabLayout
-    private lateinit var showDialog: ProgressDialog
     companion object
     {
         var DataList: MutableLiveData<Course> = MutableLiveData<Course>()
@@ -54,13 +53,11 @@ class CourseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_course)
-        showDialog = ProgressDialog(this)
         viewpager = findViewById(R.id.view_pager_course)
         viewpager.adapter = PageAdapter(supportFragmentManager)
 
         tabLayout = findViewById(R.id.tab_layout_course)
         tabLayout.setupWithViewPager(viewpager)
-
         textviewJ = findViewById(R.id.J_text_view)
         textviewT = findViewById(R.id.T_text_view)
         textviewL = findViewById(R.id.L_text_view)
@@ -155,8 +152,6 @@ class CourseActivity : AppCompatActivity() {
 
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        courseViewModel.course.value = Course()
-    }
+
+
 }
