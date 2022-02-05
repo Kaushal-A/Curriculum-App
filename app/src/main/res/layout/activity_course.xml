@@ -291,6 +291,7 @@
         app:tabIndicatorGravity="center"
         android:fontFamily="@font/ibmplexmono"
         app:tabIndicatorHeight="28dp"
+        app:tabTextAppearance="@style/MineCustomTabText"
         app:tabRippleColor="@null"
         app:tabSelectedTextColor="@color/black"
         app:tabTextColor="#A1A1A1">
@@ -298,17 +299,17 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="MODULES" />
+            android:text="Modules" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TEXTBOOKS" />
+            android:text="Textbooks" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="REFERENCES" />
+            android:text="Refrences" />
 
     </com.google.android.material.tabs.TabLayout>
 

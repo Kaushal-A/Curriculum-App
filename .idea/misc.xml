@@ -38,6 +38,7 @@
         <entry key="app/src/main/res/drawable/ic_setting.xml" value="0.1255" />
         <entry key="app/src/main/res/drawable/ic_star_notselected.xml" value="0.23981481481481481" />
         <entry key="app/src/main/res/drawable/ic_star_selected.xml" value="0.23981481481481481" />
+        <entry key="app/src/main/res/drawable/rounded_tab_shape.xml" value="0.1325" />
         <entry key="app/src/main/res/layout/activity_course.xml" value="0.30013795075593175" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.2694143445188114" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
