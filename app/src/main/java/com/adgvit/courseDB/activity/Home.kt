@@ -11,6 +11,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -40,6 +41,7 @@ class Home : AppCompatActivity(), ICourseRVAdapter, CoroutineScope {
     private lateinit var myCourseTextView: TextView
     private lateinit var showDialog: ProgressDialog
     private lateinit var progressBar: ProgressBar
+    private lateinit var loadConstraint: ConstraintLayout
 
     companion object{
         var star = false
@@ -62,6 +64,7 @@ class Home : AppCompatActivity(), ICourseRVAdapter, CoroutineScope {
         search = findViewById(R.id.search)
         setting = findViewById(R.id.settings1)
         showDialog = ProgressDialog(this)
+        loadConstraint=findViewById(R.id.loadLayout)
         myCourseTextView = findViewById(R.id.myCoursesHeader)
         progressBar = findViewById(R.id.progress_bar)
 
@@ -87,10 +90,16 @@ class Home : AppCompatActivity(), ICourseRVAdapter, CoroutineScope {
 //            Toast.makeText(this,it,Toast.LENGTH_LONG).show()
         })
         viewModel.load.observe(this, Observer {
-            if(it==true)
+            if(it==true){
+
                 progressBar.visibility = ProgressBar.VISIBLE
-            else
+                loadConstraint.visibility=View.VISIBLE
+            }
+            else{
+
                 progressBar.visibility = ProgressBar.GONE
+                loadConstraint.visibility=View.GONE
+            }
         })
 
         viewModel.getAllCourse()

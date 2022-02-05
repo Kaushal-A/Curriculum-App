@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -44,6 +45,7 @@ class CourseActivity : AppCompatActivity() {
 
     lateinit var viewpager: ViewPager
     lateinit var tabLayout: TabLayout
+    private lateinit var loadConstraint: ConstraintLayout
     companion object
     {
         var DataList: MutableLiveData<Course> = MutableLiveData<Course>()
@@ -70,7 +72,7 @@ class CourseActivity : AppCompatActivity() {
         back = findViewById<ImageView>(R.id.settings_back)
         imageStar = findViewById(R.id.image_star)
         progressBar = findViewById(R.id.progress_bar)
-
+        loadConstraint=findViewById(R.id.loadLayout)
 
 
         back.setOnClickListener(View.OnClickListener { finish() })
@@ -104,10 +106,16 @@ class CourseActivity : AppCompatActivity() {
             }
         })
         courseViewModel.load.observe(this, Observer {
-            if(it==true)
+            if(it==true){
+
                 progressBar.visibility = ProgressBar.VISIBLE
-            else
+                loadConstraint.visibility=View.VISIBLE
+            }
+            else{
+
                 progressBar.visibility = ProgressBar.GONE
+                loadConstraint.visibility=View.GONE
+            }
         })
 
 //        courseViewModel.getCourseFromCode("CSE2001")
