@@ -16,11 +16,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.adgvit.courseDB.Models.Docs
 import com.adgvit.courseDB.R
+import com.adgvit.courseDB.Models.Docs
 import com.adgvit.courseDB.rvAdapters.CourseRVAdapter
 import com.adgvit.courseDB.rvAdapters.ICourseRVAdapter
-//import com.adgvit.courseApp.rvAdapters.Settings_Adapter.intent
+import com.adgvit.courseDB.rvAdapters.Settings_Adapter.intent
 import com.adgvit.courseDB.viewModel.HomeViewModel
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import kotlinx.coroutines.*
