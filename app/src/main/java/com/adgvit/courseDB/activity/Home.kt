@@ -39,6 +39,7 @@ class Home : AppCompatActivity(), ICourseRVAdapter, CoroutineScope {
     private lateinit var search: EditText
     private lateinit var setting: ImageView
     private lateinit var myCourseTextView: TextView
+    private lateinit var allCourseTextView: TextView
     private lateinit var showDialog: ProgressDialog
     private lateinit var progressBar: ProgressBar
     private lateinit var loadConstraint: ConstraintLayout
@@ -66,6 +67,7 @@ class Home : AppCompatActivity(), ICourseRVAdapter, CoroutineScope {
         showDialog = ProgressDialog(this)
         loadConstraint=findViewById(R.id.loadLayout)
         myCourseTextView = findViewById(R.id.myCoursesHeader)
+        allCourseTextView = findViewById(R.id.allCoursesHeader)
         progressBar = findViewById(R.id.progress_bar)
 
 
@@ -75,6 +77,11 @@ class Home : AppCompatActivity(), ICourseRVAdapter, CoroutineScope {
         }
         viewModel.allCourse.observe(this, Observer {
             allCourseRVAdapter.updateRV(it)
+            if(it.isEmpty())
+                allCourseTextView.visibility = View.GONE
+            else{
+                allCourseTextView.visibility = View.VISIBLE
+            }
 
 
         })
