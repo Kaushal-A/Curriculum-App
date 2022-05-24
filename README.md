@@ -28,7 +28,7 @@ https://play.google.com/store/apps/details?id=com.adgvit.courseApp
 
 <p align="center">
 <img src = "https://user-images.githubusercontent.com/76744982/170111311-92a57845-d8b5-41ec-b59d-1c9f5e0494ce.png" alt = "Pic 1" /> 
-  <img src = "https://user-images.githubusercontent.com/76744982/170107783-dc29084f-d2b0-4c78-a1ee-ebd668c99934.png" alt = "Pic 7" width = "200" height = "400" />
+ 
   
  </p>
  
