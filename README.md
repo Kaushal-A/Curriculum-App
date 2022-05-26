@@ -28,10 +28,10 @@ https://play.google.com/store/apps/details?id=com.adgvit.courseApp
 
 <p align="center">
 <img src = "https://user-images.githubusercontent.com/76744982/170111311-92a57845-d8b5-41ec-b59d-1c9f5e0494ce.png" alt = "Pic 1" /> 
- 
-  
+
  </p>
  
+ Showing demo of pull request
  
 ## Contributors
 - Haneet Arya : https://www.github.com/Haneet-Arya
